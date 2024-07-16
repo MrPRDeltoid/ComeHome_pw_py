@@ -42,3 +42,7 @@ class HomePage(BasePage):
     # Methods
     def goto(self):
         self.page.goto(self.URL)
+    
+    def search_for_property(self, property):
+        self.searchField.fill(property)
+        self.searchButton.click()

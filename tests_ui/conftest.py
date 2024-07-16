@@ -7,6 +7,7 @@ from pages.homeowner_page import HomeownerPage
 from pages.watchlist_page import WatchlistPage
 from pages.alerts_page import AlertsPage
 from pages.agent_page import AgentPage
+from pages.property_page import PropertyPage
 
 
 @pytest.fixture()
@@ -40,3 +41,7 @@ def alerts_page(page: Page):
 @pytest.fixture()
 def agent_page(page: Page):
     return AgentPage(page)
+
+@pytest.fixture()
+def property_page(page: Page):
+    return PropertyPage(page)

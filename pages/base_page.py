@@ -31,11 +31,11 @@ class BasePage:
         self.firstnameField = self.joinLoginDialog.get_by_label('first name')
         self.lastnameField = self.joinLoginDialog.get_by_label('last name')
         self.emailField = self.joinLoginDialog.get_by_label('email')
-        self.phoneField = self.joinLoginDialog.getByLget_by_labelabel('phone')
+        self.phoneField = self.joinLoginDialog.get_by_label('phone')
         self.passwordField = self.joinLoginDialog.locator('[name="password"]')
         self.confirmRow = self.joinLoginDialog.locator('[data-hc-name="confirm-row"]')
         self.signupButton = self.joinLoginDialog.locator('[data-hc-name="signup-button"]')
-        self.loginButton = self.joinLoginDialog.get_by_label('log in', True)
+        self.loginButton = self.joinLoginDialog.get_by_role('button', name="Log In")
         # Footer Section
         self.footerSection = page.locator('[data-hc-name="footer-section"]')
 

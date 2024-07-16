@@ -2,14 +2,14 @@ from playwright.sync_api import Page
 from .base_page import BasePage
 
 
-class HomeownerPage(BasePage):
-    """Locators and methods for the Homeowner Page"""
+class PropertyPage(BasePage):
+    """Locators and methods for the Property Page"""
     def get_url(self, slug):
-        URL = f"{BasePage.BASE_URL}homeowner/{slug}"
+        URL = f"{BasePage.BASE_URL}property-details/{slug}"
         return URL
     
     def get_title(self, address):
-        TITLE = f"{address} | My Home | ComeHome"
+        TITLE = f"{address} | Property Details | ComeHome"
         return TITLE
 
     # Locators
