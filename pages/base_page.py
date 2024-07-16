@@ -20,10 +20,10 @@ class BasePage:
         self.joinLoginLink = self.mainMenu.get_by_label('Join or log in')
         # Join Login Dialog
         self.joinLoginDialog = page.locator('[class$="SlideInModal__ModalWithCloseIcon"]')
-        self.header = self.joinLoginDialog.locator('[data-hc-name="modal-header"]')
+        self.dialogHeader = self.joinLoginDialog.locator('[data-hc-name="modal-header"]')
         self.closeButton = self.joinLoginDialog.locator('[data-hc-name="close-dialog-button"]')
-        self.title = self.joinLoginDialog.locator('[class="AuthModal__Title"]')
-        self.subTitle = self.joinLoginDialog.locator('[class="AuthModal__Subtitle"]')
+        self.title = self.joinLoginDialog.locator('.AuthModal__Title')
+        self.subTitle = self.joinLoginDialog.locator('.AuthModal__Subtitle')
         self.loginRow = self.joinLoginDialog.locator('[data-hc-name="log-in-row"]')
         self.loginLink = self.joinLoginDialog.locator('[data-event-name="click_login_cta"]')
         self.signupRow = self.joinLoginDialog.locator('[data-hc-name="sign-up-row"]')
@@ -34,7 +34,7 @@ class BasePage:
         self.phoneField = self.joinLoginDialog.get_by_label('phone')
         self.passwordField = self.joinLoginDialog.locator('[name="password"]')
         self.confirmRow = self.joinLoginDialog.locator('[data-hc-name="confirm-row"]')
-        self.signupButton = self.joinLoginDialog.locator('[data-hc-name="signup-button"]')
+        self.signupButton = self.joinLoginDialog.get_by_role('button', name = "Sign Up")
         self.loginButton = self.joinLoginDialog.get_by_role('button', name="Log In")
         # Footer Section
         self.footerSection = page.locator('[data-hc-name="footer-section"]')

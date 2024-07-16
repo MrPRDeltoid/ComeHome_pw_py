@@ -4,11 +4,16 @@ from .base_page import BasePage
 
 class HomeownerPage(BasePage):
     """Locators and methods for the Homeowner Page"""
-    def get_url(self, slug):
+    URL = f"{BasePage.BASE_URL}homeowner"
+    TITLE = "My Home | ComeHome"
+
+    def get_url_property(self, slug):
+        """Given the slug, get the URL when a property is loaded in the Homowner page"""
         URL = f"{BasePage.BASE_URL}homeowner/{slug}"
         return URL
     
-    def get_title(self, address):
+    def get_title_property(self, address):
+        """Given the full address, get the Title when a property is loaded in the Homowner page"""
         TITLE = f"{address} | My Home | ComeHome"
         return TITLE
 
