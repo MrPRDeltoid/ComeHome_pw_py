@@ -11,6 +11,12 @@ class AgentPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
         self.page = page
+
+        # Top Section
+        self.topSection = self.page.locator('[data-hc-name="top-module"]')
+
+        # Sub Section
+        self.subSection = self.page.locator('[data-hc-name="sub-module"]')
     
     # Methods
     def goto(self):

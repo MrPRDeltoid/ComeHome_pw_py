@@ -11,6 +11,13 @@ class AlertsPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
         self.page = page
+
+        # Header Section
+        self.headerSection = self.page.locator('.AlertsHeader__AlertsHeadingBox')
+
+        # Logged Out Section
+        self.loggedOutSection = self.page.locator('[data-hc-name="logged-out-section"]')
+
     
     # Methods
     def goto(self):
