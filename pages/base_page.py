@@ -18,6 +18,11 @@ class BasePage:
         self.alertsButton = self.mainMenu.locator('[data-hc-name="alerts-button"]')
         self.findAnAgentButton = self.mainMenu.locator('[data-hc-name="find-an-agent-button"]')
         self.joinLoginLink = self.mainMenu.get_by_label('Join or log in')
+        # Brokerage Attribution Section
+        self.brokerageSection = self.page.locator('[class$="__BrokerageAttribution"]')
+        self.brokerageLogo = self.brokerageSection.locator(self.logo)
+        self.brokerageContactLink = self.brokerageSection.locator('.BrokerageAttribution__Link')
+        self.brokerageText = self.brokerageSection.locator('.BrokerageAttribution__BrokerageSection')
         # Join Login Dialog
         self.joinLoginDialog = page.locator('[class$="SlideInModal__ModalWithCloseIcon"]')
         self.dialogHeader = self.joinLoginDialog.locator('[data-hc-name="modal-header"]')

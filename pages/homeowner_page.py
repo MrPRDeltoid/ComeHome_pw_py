@@ -28,9 +28,6 @@ class HomeownerPage(BasePage):
         # AVM Section
         self.avmSection = self.page.locator('[data-hc-name="avm-section"]')
 
-        # Brokerage Attribution Section
-        self.brokerageSection = self.page.locator('[class$="__BrokerageAttribution"]')
-
         # Property Cards Section
         self.cardsSection = self.page.locator('.HODashboard__CardsContainer')
 

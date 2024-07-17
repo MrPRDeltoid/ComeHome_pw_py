@@ -3,7 +3,7 @@ from pages.home_page import HomePage
 from pages.agent_page import AgentPage
 
 
-def test_correct_text_and_elements_find_view(home_page: HomePage, setup):
+def test_correct_text_and_elements(home_page: HomePage, setup):
     """Verify Agent section has correct text and elements"""
     expect(home_page.findAgentImage).to_be_visible()
     expect(home_page.findAgentTitle).to_have_text("Need help finding an agent? We'll connect you.")

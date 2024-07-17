@@ -23,7 +23,7 @@ class HomePage(BasePage):
         self.searchResultItem = self.topSection.locator('[data-hc-name="header-search-results-address-list-item"]')
         # Photo Section
         self.photoSection = page.locator('[class$="__PhotoSection"]')
-        self.photoColumn = self.photoSection.locator('class$="__PhotoColumn"]')
+        self.photoColumn = self.photoSection.locator('[class$="__PhotoColumn"]')
         self.photo = self.photoSection.locator('[class$="__PhotoColumnPhoto"]')
         # Track or Buy Section
         self.trackOrBuySection = page.locator('[class$="__HomeSubpageTrackOrBuyHome"]')
