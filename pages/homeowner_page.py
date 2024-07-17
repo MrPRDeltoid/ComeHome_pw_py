@@ -23,3 +23,5 @@ class HomeownerPage(BasePage):
         self.page = page
     
     # Methods
+    def goto(self):
+        self.page.goto(self.URL)

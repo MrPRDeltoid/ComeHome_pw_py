@@ -10,5 +10,5 @@ def test_verify_main_sections(page: Page, home_page: HomePage, setup):
     expect(home_page.topSection).to_be_visible()
     expect(home_page.photoSection).to_be_visible()
     expect(home_page.trackOrBuySection).to_be_visible()
-    expect(home_page.yourTeamAgentSection).to_be_visible()
+    expect(home_page.agentSection).to_be_visible()
     expect(home_page.footerSection).to_be_visible()

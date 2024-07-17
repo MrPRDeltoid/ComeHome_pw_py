@@ -23,21 +23,24 @@ class HomePage(BasePage):
         self.searchResultItem = self.topSection.locator('[data-hc-name="header-search-results-address-list-item"]')
         # Photo Section
         self.photoSection = page.locator('[class$="__PhotoSection"]')
-        self.photoColumn = self.photoSection.locator('class$="__PhotoColumn"]');
-        self.photo = self.photoSection.locator('[class$="__PhotoColumnPhoto"]');
+        self.photoColumn = self.photoSection.locator('class$="__PhotoColumn"]')
+        self.photo = self.photoSection.locator('[class$="__PhotoColumnPhoto"]')
         # Track or Buy Section
         self.trackOrBuySection = page.locator('[class$="__HomeSubpageTrackOrBuyHome"]')
+        self.buyHomeImage = self.trackOrBuySection.locator('img').and_(self.trackOrBuySection.get_by_alt_text("A building"))
         self.buyHomeTitle = self.trackOrBuySection.locator('[data-hc-name="buy-home-modal-header"]')
         self.buyHomeDescription = self.trackOrBuySection.locator('[data-hc-name="buy-home-modal-description"]')
         self.searchHomesButton = self.trackOrBuySection.locator('[data-hc-name="buy-home-modal-button"]')
+        self.yourHomeImage = self.trackOrBuySection.locator('img').and_(self.trackOrBuySection.get_by_alt_text("A house"))
         self.yourHomeTitle = self.trackOrBuySection.locator('[data-hc-name="your-home-dash-modal-header"]')
         self.yourHomeDescription = self.trackOrBuySection.locator('[data-hc-name="your-home-dash-modal-description"]')
         self.seeMyHomeButton = self.trackOrBuySection.locator('[data-hc-name="your-home-dash-modal-button"]')
-        # Team Agent Section
-        self.yourTeamAgentSection = page.locator('[class$="__HomeSubpageYourTeamAgent"]')
-        self.findAgentTitle = self.yourTeamAgentSection.locator('.HomeSubpageYourTeamAgent__CardHeader')
-        self.findAgentDescription = self.yourTeamAgentSection.locator('.HomeSubpageYourTeamAgent__CardDescription')
-        self.findAgentButton = self.yourTeamAgentSection.locator('[data-hc-name="find-an-agent-cta"]')
+        # Agent Section
+        self.agentSection = page.locator('[class$="__HomeSubpageYourTeamAgent"]')
+        self.findAgentImage = self.agentSection.locator('img').and_(self.agentSection.get_by_alt_text("a hand writing with a pen"))
+        self.findAgentTitle = self.agentSection.locator('.HomeSubpageYourTeamAgent__CardHeader')
+        self.findAgentDescription = self.agentSection.locator('.HomeSubpageYourTeamAgent__CardDescription')
+        self.findAgentButton = self.agentSection.locator('[data-hc-name="find-an-agent-cta"]')
 
     # Methods
     def goto(self):
