@@ -11,6 +11,16 @@ class SearchPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
         self.page = page
+
+        # Search Section
+        self.searchBar = page.locator('.SearchPageMap__TopBar')
+
+        # Map Section
+        self.mapSection = page.locator('[data-hc-name="map-section"]')
+
+        # Property Section
+        self.propertySection = page.locator('[data-hc-name="property-card-section"]')
+
     
     # Methods
     def goto(self):

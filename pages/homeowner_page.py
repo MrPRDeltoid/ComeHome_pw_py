@@ -21,7 +21,19 @@ class HomeownerPage(BasePage):
     def __init__(self, page: Page):
         super().__init__(page)
         self.page = page
-    
+
+        # Main Section(shown when no address is selected)
+        self.mainSection = self.page.locator('[data-testid="loading-section"]')
+
+        # AVM Section
+        self.avmSection = self.page.locator('[data-hc-name="avm-section"]')
+
+        # Brokerage Attribution Section
+        self.brokerageSection = self.page.locator('[class$="__BrokerageAttribution"]')
+
+        # Property Cards Section
+        self.cardsSection = self.page.locator('.HODashboard__CardsContainer')
+
     # Methods
     def goto(self):
         self.page.goto(self.URL)
