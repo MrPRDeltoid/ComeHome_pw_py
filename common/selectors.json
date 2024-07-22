@@ -9,5 +9,15 @@
         "photoSection": "[class$='__PhotoSection']",
         "trackOrBuySection": "[class$='__HomeSubpageTrackOrBuyHome']",
         "agentSection": "[class$='__HomeSubpageYourTeamAgent']"
+    },
+    "search_page": {
+        "searchBar": ".SearchPageMap__TopBar",
+        "mapSection": "[data-hc-name='map-section']",
+        "propertySection": "[data-hc-name='property-card-section']"
+    },
+    "homeowner_page": {
+        "mainSection": "[data-testid='loading-section']",
+        "avmSection": "[data-hc-name='avm-section']",
+        "cardsSection": ".HODashboard__CardsContainer"
     }
 }
