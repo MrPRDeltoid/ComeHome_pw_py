@@ -1,3 +1,4 @@
+import json
 from playwright.sync_api import Page
 from .base_page import BasePage
 
@@ -12,14 +13,18 @@ class SearchPage(BasePage):
         super().__init__(page)
         self.page = page
 
+        # Load in common selectors from json file
+        with open(r".\common\selectors.json", mode="r", encoding="utf-8") as json_data:
+            selectors = json.load(json_data)['search_page']
+
         # Search Section
-        self.searchBar = page.locator('.SearchPageMap__TopBar')
+        self.searchBar = page.locator(selectors['searchBar'])
 
         # Map Section
-        self.mapSection = page.locator('[data-hc-name="map-section"]')
+        self.mapSection = page.locator(selectors['mapSection'])
 
         # Property Section
-        self.propertySection = page.locator('[data-hc-name="property-card-section"]')
+        self.propertySection = page.locator(selectors['propertySection'])
 
     
     # Methods

@@ -1,3 +1,4 @@
+import json
 from playwright.sync_api import Page
 from .base_page import BasePage
 
@@ -22,14 +23,18 @@ class HomeownerPage(BasePage):
         super().__init__(page)
         self.page = page
 
+        # Load in common selectors from json file
+        with open(r".\common\selectors.json", mode="r", encoding="utf-8") as json_data:
+            selectors = json.load(json_data)['homeowner_page']
+
         # Main Section(shown when no address is selected)
-        self.mainSection = self.page.locator('[data-testid="loading-section"]')
+        self.mainSection = self.page.locator(selectors['mainSection'])
 
         # AVM Section
-        self.avmSection = self.page.locator('[data-hc-name="avm-section"]')
+        self.avmSection = self.page.locator(selectors['avmSection'])
 
         # Property Cards Section
-        self.cardsSection = self.page.locator('.HODashboard__CardsContainer')
+        self.cardsSection = self.page.locator(selectors['cardsSection'])
 
     # Methods
     def goto(self):
