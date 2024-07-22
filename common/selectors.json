@@ -1,0 +1,13 @@
+{
+    "base_page": {
+        "mainMenu": "[data-hc-name='top-section']",
+        "joinLoginDialog": "[class$='SlideInModal__ModalWithCloseIcon']",
+        "footerSection": "[data-hc-name='footer-section']"
+    },
+    "home_page": {
+        "topSection": "[class$='__TopSection']",
+        "photoSection": "[class$='__PhotoSection']",
+        "trackOrBuySection": "[class$='__HomeSubpageTrackOrBuyHome']",
+        "agentSection": "[class$='__HomeSubpageYourTeamAgent']"
+    }
+}

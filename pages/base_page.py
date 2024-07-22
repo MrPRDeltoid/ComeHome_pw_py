@@ -1,3 +1,4 @@
+import json
 from playwright.sync_api import Page
 
 
@@ -9,8 +10,12 @@ class BasePage:
     def __init__(self, page: Page):
         self.page = page
 
+        # Load in common selectors from json file
+        with open(r".\common\selectors.json", mode="r", encoding="utf-8") as json_data:
+            selectors = json.load(json_data)['base_page']
+
         # Main Menu
-        self.mainMenu = page.locator('[data-hc-name="top-section"]')
+        self.mainMenu = page.locator(selectors['mainMenu'])
         self.logo = self.mainMenu.locator('[data-hc-name="comehome-logo"]')
         self.buyHomeButton = self.mainMenu.locator('[data-hc-name="buy-home-button"]')
         self.myHomeButton = self.mainMenu.locator('[data-hc-name="my-home-button"]')
@@ -24,7 +29,7 @@ class BasePage:
         self.brokerageContactLink = self.brokerageSection.locator('.BrokerageAttribution__Link')
         self.brokerageText = self.brokerageSection.locator('.BrokerageAttribution__BrokerageSection')
         # Join Login Dialog
-        self.joinLoginDialog = page.locator('[class$="SlideInModal__ModalWithCloseIcon"]')
+        self.joinLoginDialog = page.locator(selectors['joinLoginDialog'])
         self.dialogHeader = self.joinLoginDialog.locator('[data-hc-name="modal-header"]')
         self.closeButton = self.joinLoginDialog.locator('[data-hc-name="close-dialog-button"]')
         self.title = self.joinLoginDialog.locator('.AuthModal__Title')
@@ -42,7 +47,7 @@ class BasePage:
         self.signupButton = self.joinLoginDialog.get_by_role('button', name = "Sign Up")
         self.loginButton = self.joinLoginDialog.get_by_role('button', name="Log In")
         # Footer Section
-        self.footerSection = page.locator('[data-hc-name="footer-section"]')
+        self.footerSection = page.locator(selectors['footerSection'])
 
     # Methods
     def showJoinLoginDialog(self):

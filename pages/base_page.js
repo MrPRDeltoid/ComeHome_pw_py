@@ -1,12 +1,13 @@
 import { expect } from '@playwright/test';
+import { base_page } from '../common/selectors.json';
 
 
 export class BasePage {
     constructor(page) {
         this.page = page;
 
-        this.mainMenu = page.locator('[data-hc-name="top-section"]');
-        this.joinLoginDialog = page.locator('[class$="SlideInModal__ModalWithCloseIcon"]');
-        this.footerSection = page.locator('[data-hc-name="footer-section"]');
+        this.mainMenu = page.locator(base_page.mainMenu);
+        this.joinLoginDialog = page.locator(base_page.joinLoginDialog);
+        this.footerSection = page.locator(base_page.footerSection);
   }
 }

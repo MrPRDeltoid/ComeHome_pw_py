@@ -1,3 +1,4 @@
+import json
 from playwright.sync_api import Page
 from .base_page import BasePage
 
@@ -12,8 +13,12 @@ class HomePage(BasePage):
         super().__init__(page)
         self.page = page
 
+        # Load in common selectors from json file
+        with open(r".\common\selectors.json", mode="r", encoding="utf-8") as json_data:
+            selectors = json.load(json_data)['home_page']
+
         # Top Section
-        self.topSection = page.locator('[class$="__TopSection"]')
+        self.topSection = page.locator(selectors['topSection'])
         self.header = self.topSection.locator('h1')
         self.subheader = self.topSection.locator('[class$="__SubHeader"]')
         self.findHomeButton = self.topSection.locator('[data-hc-name="find-a-home"]')
@@ -22,11 +27,11 @@ class HomePage(BasePage):
         self.searchButton = self.topSection.locator('button[class$="HomeSubpageSearch__SearchButton"]')
         self.searchResultItem = self.topSection.locator('[data-hc-name="header-search-results-address-list-item"]')
         # Photo Section
-        self.photoSection = page.locator('[class$="__PhotoSection"]')
+        self.photoSection = page.locator(selectors['photoSection'])
         self.photoColumn = self.photoSection.locator('[class$="__PhotoColumn"]')
         self.photo = self.photoSection.locator('[class$="__PhotoColumnPhoto"]')
         # Track or Buy Section
-        self.trackOrBuySection = page.locator('[class$="__HomeSubpageTrackOrBuyHome"]')
+        self.trackOrBuySection = page.locator(selectors['trackOrBuySection'])
         self.buyHomeImage = self.trackOrBuySection.locator('img').and_(self.trackOrBuySection.get_by_alt_text("A building"))
         self.buyHomeTitle = self.trackOrBuySection.locator('[data-hc-name="buy-home-modal-header"]')
         self.buyHomeDescription = self.trackOrBuySection.locator('[data-hc-name="buy-home-modal-description"]')
@@ -36,7 +41,7 @@ class HomePage(BasePage):
         self.yourHomeDescription = self.trackOrBuySection.locator('[data-hc-name="your-home-dash-modal-description"]')
         self.seeMyHomeButton = self.trackOrBuySection.locator('[data-hc-name="your-home-dash-modal-button"]')
         # Agent Section
-        self.agentSection = page.locator('[class$="__HomeSubpageYourTeamAgent"]')
+        self.agentSection = page.locator(selectors['agentSection'])
         self.findAgentImage = self.agentSection.locator('img').and_(self.agentSection.get_by_alt_text("a hand writing with a pen"))
         self.findAgentTitle = self.agentSection.locator('.HomeSubpageYourTeamAgent__CardHeader')
         self.findAgentDescription = self.agentSection.locator('.HomeSubpageYourTeamAgent__CardDescription')
