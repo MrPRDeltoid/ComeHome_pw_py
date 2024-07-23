@@ -1,3 +1,4 @@
+import json
 from playwright.sync_api import Page
 from .base_page import BasePage
 
@@ -12,11 +13,15 @@ class AgentPage(BasePage):
         super().__init__(page)
         self.page = page
 
+        # Load in common selectors from json file
+        with open(r".\common\selectors.json", mode="r", encoding="utf-8") as json_data:
+            selectors = json.load(json_data)['agent_page']
+
         # Top Section
-        self.topSection = self.page.locator('[data-hc-name="top-module"]')
+        self.topSection = self.page.locator(selectors['topSection'])
 
         # Sub Section
-        self.subSection = self.page.locator('[data-hc-name="sub-module"]')
+        self.subSection = self.page.locator(selectors['subSection'])
     
     # Methods
     def goto(self):

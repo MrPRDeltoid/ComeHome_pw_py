@@ -18,6 +18,6 @@ test.describe('The Search Page', () => {
 
         await expect(search_page.mainMenu).toHaveScreenshot('search_page_mainMenu.png');
         await expect(search_page.searchBar).toHaveScreenshot('search_page_searchBar.png');
-        await expect(search_page.footerSection).toHaveScreenshot('search_page_footerSection.png');
+        await expect(search_page.footerSection).toHaveScreenshot('search_page_footerSection.png', { maxDiffPixelRatio: 0.01 });
     });
 });

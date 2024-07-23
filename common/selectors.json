@@ -19,5 +19,17 @@
         "mainSection": "[data-testid='loading-section']",
         "avmSection": "[data-hc-name='avm-section']",
         "cardsSection": ".HODashboard__CardsContainer"
+    },
+    "watchlist_page": {
+        "headerSection": ".WatchListHeader__WatchListHeader",
+        "loggedOutSection": "[data-hc-name='logged-out-section']"
+    },
+    "alerts_page": {
+        "headerSection": ".AlertsHeader__AlertsHeadingBox",
+        "loggedOutSection": "[data-hc-name='logged-out-section']"
+    },
+    "agent_page": {
+        "topSection": "[data-hc-name='top-module']",
+        "subSection": "[data-hc-name='sub-module']"
     }
 }

@@ -1,3 +1,4 @@
+import json
 from playwright.sync_api import Page
 from .base_page import BasePage
 
@@ -12,11 +13,15 @@ class AlertsPage(BasePage):
         super().__init__(page)
         self.page = page
 
+        # Load in common selectors from json file
+        with open(r".\common\selectors.json", mode="r", encoding="utf-8") as json_data:
+            selectors = json.load(json_data)['alerts_page']
+
         # Header Section
-        self.headerSection = self.page.locator('.AlertsHeader__AlertsHeadingBox')
+        self.headerSection = self.page.locator(selectors['headerSection'])
 
         # Logged Out Section
-        self.loggedOutSection = self.page.locator('[data-hc-name="logged-out-section"]')
+        self.loggedOutSection = self.page.locator(selectors['loggedOutSection'])
 
     
     # Methods
