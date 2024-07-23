@@ -15,8 +15,7 @@ def test_verify_main_menu_items(home_page: HomePage, setup):
     expect(home_page.savedButton).to_have_text("Saved")
     expect(home_page.alertsButton).to_have_text("Alerts")
     expect(home_page.findAnAgentButton).to_have_text("Find an agent")
-    expect(home_page.joinLoginLink).to_have_text("Join or Log in")
-    #expect(home_page.joinLoginLink).to_have_css('background-color', 'rgb(88, 64, 234)')
+    expect(home_page.joinLoginButton).to_have_text("Join or Log in")
 
 def test_find_home_menu_item(page: Page, home_page: HomePage, search_page: SearchPage, setup):
     """Click Find a Home menu item and verify correct page is loaded"""

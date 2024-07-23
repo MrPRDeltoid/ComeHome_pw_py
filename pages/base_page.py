@@ -22,7 +22,7 @@ class BasePage:
         self.savedButton = self.mainMenu.locator('[data-hc-name="saved-button"]')
         self.alertsButton = self.mainMenu.locator('[data-hc-name="alerts-button"]')
         self.findAnAgentButton = self.mainMenu.locator('[data-hc-name="find-an-agent-button"]')
-        self.joinLoginLink = self.mainMenu.get_by_label('Join or log in')
+        self.joinLoginButton = self.mainMenu.get_by_label(selectors['joinLoginButton'])
         # Brokerage Attribution Section
         self.brokerageSection = self.page.locator('[class$="__BrokerageAttribution"]')
         self.brokerageLogo = self.brokerageSection.locator(self.logo)
@@ -31,13 +31,13 @@ class BasePage:
         # Join Login Dialog
         self.joinLoginDialog = page.locator(selectors['joinLoginDialog'])
         self.dialogHeader = self.joinLoginDialog.locator('[data-hc-name="modal-header"]')
-        self.closeButton = self.joinLoginDialog.locator('[data-hc-name="close-dialog-button"]')
+        self.closeButton = self.joinLoginDialog.locator(selectors['closeButton'])
         self.title = self.joinLoginDialog.locator('.AuthModal__Title')
         self.subTitle = self.joinLoginDialog.locator('.AuthModal__Subtitle')
         self.loginRow = self.joinLoginDialog.locator('[data-hc-name="log-in-row"]')
-        self.loginLink = self.joinLoginDialog.locator('[data-event-name="click_login_cta"]')
+        self.loginLink = self.joinLoginDialog.locator(selectors['loginLink'])
         self.signupRow = self.joinLoginDialog.locator('[data-hc-name="sign-up-row"]')
-        self.signupLink = self.joinLoginDialog.locator('[data-event-name="click_signup_cta"]')
+        self.signupLink = self.joinLoginDialog.locator(selectors['signupLink'])
         self.firstnameField = self.joinLoginDialog.get_by_label('first name')
         self.lastnameField = self.joinLoginDialog.get_by_label('last name')
         self.emailField = self.joinLoginDialog.get_by_label('email')
@@ -51,7 +51,7 @@ class BasePage:
 
     # Methods
     def showJoinLoginDialog(self):
-        self.joinLoginLink.click()
+        self.joinLoginButton.click()
     
     def closeDialog(self):
         self.closeButton.click()

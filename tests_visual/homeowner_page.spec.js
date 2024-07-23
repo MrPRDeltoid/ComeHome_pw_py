@@ -13,7 +13,7 @@ test.afterAll('Close the browser', async ({ page }) => {
   });
 
 test.describe('The Homeowner Page when no property selected', () => {
-    test('has expected sections', async ({ page }) => {
+    test('shows expected sections', async ({ page }) => {
         const homeowner_page = new HomeownerPage(page);
 
         await expect(homeowner_page.mainMenu).toHaveScreenshot('homeowner_page_mainMenu.png');

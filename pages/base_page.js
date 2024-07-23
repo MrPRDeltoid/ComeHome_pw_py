@@ -1,13 +1,27 @@
-import { expect } from '@playwright/test';
+import { locator, getByLabel } from '@playwright/test';
 import { base_page } from '../common/selectors.json';
 
 
 export class BasePage {
-    constructor(page) {
-        this.page = page;
+  // Locators
+  constructor(page) {
+    this.page = page;
+    
+    this.mainMenu = page.locator(base_page.mainMenu);
+    this.joinLoginButton = page.getByLabel(base_page.joinLoginButton);
+    this.joinLoginDialog = page.locator(base_page.joinLoginDialog);
+    this.loginLink = page.locator(base_page.loginLink);
+    this.signupLink = page.locator(base_page.signupLink);
+    this.closeButton = page.locator(base_page.closeButton);
+    this.footerSection = page.locator(base_page.footerSection);
+  }
 
-        this.mainMenu = page.locator(base_page.mainMenu);
-        this.joinLoginDialog = page.locator(base_page.joinLoginDialog);
-        this.footerSection = page.locator(base_page.footerSection);
+  // Methods
+  async showJoinLoginDialog() {
+    await this.joinLoginButton.click();
+  }
+
+  async closeDialog() {
+    await this.closeButton.click();
   }
 }

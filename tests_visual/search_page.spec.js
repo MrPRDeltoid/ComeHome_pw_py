@@ -13,7 +13,7 @@ test.afterAll('Close the browser', async ({ page }) => {
 });
 
 test.describe('The Search Page', () => {
-    test('has expected sections', async ({ page }) => {
+    test('shows expected sections', async ({ page }) => {
         const search_page = new SearchPage(page);
 
         await expect(search_page.mainMenu).toHaveScreenshot('search_page_mainMenu.png');

@@ -12,6 +12,7 @@ exports.SearchPage = class SearchPage extends BasePage {
         this.mapSection = page.locator(search_page.mapSection);
         this.propertySection = page.locator(search_page.propertySection);
     }
+    
     // Methods
     async gotoSearchPage() {
         await this.page.goto('/search');

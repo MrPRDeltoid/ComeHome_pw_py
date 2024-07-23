@@ -13,7 +13,7 @@ test.afterAll('Close the browser', async ({ page }) => {
 });
 
 test.describe('The Alerts Page', () => {
-    test('has expected sections', async ({ page }) => {
+    test('shows expected sections', async ({ page }) => {
         const alerts_page = new AlertsPage(page);
 
         await expect(alerts_page.mainMenu).toHaveScreenshot('alerts_page_mainMenu.png');

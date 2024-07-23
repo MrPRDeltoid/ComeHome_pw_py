@@ -1,7 +1,11 @@
 {
     "base_page": {
         "mainMenu": "[data-hc-name='top-section']",
+        "joinLoginButton": "Join or log in",
         "joinLoginDialog": "[class$='SlideInModal__ModalWithCloseIcon']",
+        "loginLink": "[data-event-name='click_login_cta']",
+        "signupLink": "[data-event-name='click_signup_cta']",
+        "closeButton": "[data-hc-name='close-dialog-button']",
         "footerSection": "[data-hc-name='footer-section']"
     },
     "home_page": {

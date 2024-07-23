@@ -12,6 +12,7 @@ exports.HomeownerPage = class HomeownerPage extends BasePage {
         this.avmSection = page.locator(homeowner_page.avmSection);
         this.cardsSection = page.locator(homeowner_page.cardsSection);
     }
+    
     // Methods
     async gotoHomeownerPage() {
         await this.page.goto('/homeowner');

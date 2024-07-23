@@ -14,6 +14,7 @@ exports.HomePage = class HomePage extends BasePage {
         this.trackOrBuySection = page.locator(home_page.trackOrBuySection);
         this.agentSection = page.locator(home_page.agentSection);
     }
+
     // Methods
     async gotoHomePage() {
         await this.page.goto('/');
