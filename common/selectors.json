@@ -35,5 +35,14 @@
     "agent_page": {
         "topSection": "[data-hc-name='top-module']",
         "subSection": "[data-hc-name='sub-module']"
+    },
+    "property_page": {
+        "topBar": ".PropertyPageTopBarComeHome__PropertyPageTopBar",
+        "photoSection": "[data-hc-name='carousel-section']",
+        "propertyOptionsPanel": "[data-hc-name='summary-options-panel']",
+        "propertyIntroSection": "[data-hc-name='property-intro-section']",
+        "propertyDetailsSection": ".AdditionalHomeDetails__AdditionalHomeDetails",
+        "claimHomeSection": "[data-hc-name='upsell-section']",
+        "mapSection": ".MapPropertyPage__MapPropertyPage"
     }
 }
