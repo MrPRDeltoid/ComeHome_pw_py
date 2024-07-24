@@ -9,7 +9,7 @@ test.beforeEach('Load Watchlist Page', async ({ page }) => {
     await watchlist_page.gotoWatchlistPage();
   });
   
-test.afterAll('Close the browser', async ({ page }) => {
+test.afterEach('Close the browser', async ({ page }) => {
     await page.close();
 });
 

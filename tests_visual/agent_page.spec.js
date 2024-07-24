@@ -8,7 +8,7 @@ test.beforeEach('Load Agent Page', async ({ page }) => {
     await agent_page.gotoAgentPage();
   });
   
-test.afterAll('Close the browser', async ({ page }) => {
+test.afterEach('Close the browser', async ({ page }) => {
     await page.close();
 });
 

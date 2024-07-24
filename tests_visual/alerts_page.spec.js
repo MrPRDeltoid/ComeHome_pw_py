@@ -8,7 +8,7 @@ test.beforeEach('Load Alerts Page', async ({ page }) => {
     await alerts_page.gotoAlertsPage();
   });
   
-test.afterAll('Close the browser', async ({ page }) => {
+test.afterEach('Close the browser', async ({ page }) => {
     await page.close();
 });
 

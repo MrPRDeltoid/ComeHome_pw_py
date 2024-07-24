@@ -8,7 +8,7 @@ test.beforeEach('Load Home Page', async ({ page }) => {
     await home_page.gotoHomePage();
   });
   
-test.afterAll('Close the browser', async ({ page }) => {
+test.afterEach('Close the browser', async ({ page }) => {
     await page.close();
 });
 
