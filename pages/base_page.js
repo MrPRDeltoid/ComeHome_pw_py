@@ -1,4 +1,3 @@
-import { locator, getByLabel } from '@playwright/test';
 import { base_page } from '../common/selectors.json';
 
 

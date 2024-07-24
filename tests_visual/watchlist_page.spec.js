@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test';
 import { WatchlistPage } from '../pages/watchlist_page.js';
-import { watch } from 'fs';
 
 
 test.beforeEach('Load Watchlist Page', async ({ page }) => {

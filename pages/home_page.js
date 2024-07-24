@@ -1,4 +1,3 @@
-import { expect, page } from '@playwright/test';
 import { BasePage} from './base_page'
 import { home_page } from '../common/selectors.json';
 
