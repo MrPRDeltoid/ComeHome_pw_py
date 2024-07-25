@@ -44,14 +44,29 @@ class BasePage:
         self.phoneField = self.joinLoginDialog.get_by_label('phone')
         self.passwordField = self.joinLoginDialog.locator('[name="password"]')
         self.confirmRow = self.joinLoginDialog.locator('[data-hc-name="confirm-row"]')
+        self.confirmCheck = self.confirmRow.get_by_role('checkbox')
         self.signupButton = self.joinLoginDialog.get_by_role('button', name = "Sign Up")
         self.loginButton = self.joinLoginDialog.get_by_role('button', name="Log In")
+        self.errorMessage = self.joinLoginDialog.get_by_role('alert')
         # Footer Section
         self.footerSection = page.locator(selectors['footerSection'])
 
     # Methods
     def showJoinLoginDialog(self):
         self.joinLoginButton.click()
+    
+    def fillSignupDialogFields(self, first_name='', last_name='', email='', phone='', password='', check=True):
+        self.firstnameField.fill(first_name)
+        self.lastnameField.fill(last_name)
+        self.emailField.fill(email)
+        self.phoneField.fill(phone)
+        self.passwordField.fill(password)
+        if check:
+            self.confirmCheck.check()
+    
+    def fillLoginDialogFields(self, email='', password=''):
+        self.emailField.fill(email)
+        self.passwordField.fill(password)
     
     def closeDialog(self):
         self.closeButton.click()

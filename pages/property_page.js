@@ -10,11 +10,13 @@ exports.PropertyPage = class PropertyPage extends BasePage {
 
         this.topBar = page.locator(property_page.topBar);
         this.photoSection = page.locator(property_page.photoSection);
+        this.photoSectionImage = page.locator(property_page.photoSection).getByRole('img');
         this.propertyOptionsPanel = page.locator(property_page.propertyOptionsPanel);
         this.propertyIntroSection = page.locator(property_page.propertyIntroSection);
         this.propertyDetailsSection = page.locator(property_page.propertyDetailsSection);
         this.claimHomeSection = page.locator(property_page.claimHomeSection);
         this.mapSection = page.locator(property_page.mapSection);
+        this.mapSectionImage = page.locator(property_page.mapSection).getByRole('tabpanel');
     }
     
     // Methods
