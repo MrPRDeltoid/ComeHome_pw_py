@@ -54,7 +54,7 @@ def test_missing_required_fields_signup(home_page: HomePage, setup, launch_close
 
 def test_invalid_email_valid_password_signup(home_page: HomePage, setup, launch_close_dialog):
     """Enter valid required info and invalid email to verify correct error message and button activation in Signup view"""
-    home_page.fillSignupDialogFields(first_name='First', last_name='Last', password='Password123')
+    home_page.fillJoinLoginDialogFields(first_name='First', last_name='Last', password='Password123')
     home_page.emailField.fill('invalid_email')
     home_page.emailField.press('Tab')
     expect(home_page.errorMessage).to_have_count(1)
@@ -74,7 +74,7 @@ def test_invalid_email_valid_password_signup(home_page: HomePage, setup, launch_
 
 def test_valid_email_invalid_password_signup(home_page: HomePage, setup, launch_close_dialog):
     """Enter valid required info and invalid password to verify correct error message and button activation in Signup view"""
-    home_page.fillSignupDialogFields(first_name='First', last_name='Last', email='valid_email@gmail.com')
+    home_page.fillJoinLoginDialogFields(first_name='First', last_name='Last', email='valid_email@gmail.com')
     home_page.passwordField.fill('1234')
     home_page.passwordField.press('Tab')
     expect(home_page.errorMessage).to_have_count(1)
@@ -89,7 +89,7 @@ def test_valid_email_invalid_password_signup(home_page: HomePage, setup, launch_
 def test_invalid_email_valid_password_login(home_page: HomePage, setup, launch_close_dialog):
     """Enter valid password and invalid email to verify correct error message and button activation in Login view"""
     home_page.loginLink.click()
-    home_page.fillLoginDialogFields(password='Password123')
+    home_page.fillJoinLoginDialogFields(password='Password123')
     home_page.emailField.fill('invalid_email')
     home_page.emailField.press('Tab')
     expect(home_page.errorMessage).to_have_count(1)
@@ -108,7 +108,7 @@ def test_invalid_email_valid_password_login(home_page: HomePage, setup, launch_c
 def test_valid_email_invalid_password_login(home_page: HomePage, setup, launch_close_dialog):
     """Enter valid email and invalid password to verify correct error message and button activation in Login view"""
     home_page.loginLink.click()
-    home_page.fillLoginDialogFields(email='valid_email@gmail.com')
+    home_page.fillJoinLoginDialogFields(email='valid_email@gmail.com')
     home_page.passwordField.fill('1234')
     home_page.passwordField.press('Tab')
     expect(home_page.errorMessage).to_have_count(1)

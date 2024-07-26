@@ -55,18 +55,24 @@ class BasePage:
     def showJoinLoginDialog(self):
         self.joinLoginButton.click()
     
-    def fillSignupDialogFields(self, first_name='', last_name='', email='', phone='', password='', check=True):
-        self.firstnameField.fill(first_name)
-        self.lastnameField.fill(last_name)
-        self.emailField.fill(email)
-        self.phoneField.fill(phone)
-        self.passwordField.fill(password)
-        if check:
-            self.confirmCheck.check()
-    
-    def fillLoginDialogFields(self, email='', password=''):
+    def fillJoinLoginDialogFields(self, first_name='', last_name='', email='', phone='', password='', check=True):
+        if self.subTitle.text_content() == "Please sign up for a ComeHome account.":  # The Signup view is shown with additional fields
+            self.firstnameField.fill(first_name)
+            self.lastnameField.fill(last_name)
+            self.phoneField.fill(phone)
+            if check:
+                self.confirmCheck.check()
         self.emailField.fill(email)
         self.passwordField.fill(password)
     
+    def construct_full_address(self, data):
+        full_address = f"{data['street']} {data['city']} {data['state']} {data['zip']}"
+        return full_address
+    
+    def construct_slug(self, data):
+        full_address = self.construct_full_address(data)
+        slug = f"{full_address}".replace(' ', '-')
+        return slug
+
     def closeDialog(self):
         self.closeButton.click()

@@ -24,25 +24,40 @@ class PropertyPage(BasePage):
 
         # Top Bar Section
         self.topBar = page.locator(selectors['topBar'])
-
+        self.breadcrumbs = self.topBar.locator('[data-hc-name="breadcrumbs"]')
+        self.publicViewButton = self.topBar.locator('[data-hc-name="public-view-button"]')
+        self.ownerViewButton = self.topBar.locator('[data-hc-name="owner-view-button"]')
         # Photo Section
         self.photoSection = page.locator(selectors['photoSection'])
-
         # Property Options Panel
         self.propertyOptionsPanel = page.locator(selectors['propertyOptionsPanel'])
-
+        self.listingStatus = self.propertyOptionsPanel.locator('[data-hc-name="listing-status"]')
+        self.getPreApprovedButton = self.propertyOptionsPanel.get_by_label('Get pre-approved')
+        self.contactAgentButton = self.propertyOptionsPanel.locator('[data-hc-name="contact-agent-button"]')
+        self.shareButton = self.propertyOptionsPanel.get_by_label('share')
+        self.saveButton = self.propertyOptionsPanel.get_by_label('Save this property to your Watchlist')
+        self.mlsAttribution = self.propertyOptionsPanel.locator('.PDPRightRailCard__MLSAttribution')
         # Property Intro Section
         self.propertyIntroSection = page.locator(selectors['propertyIntroSection'])
-
+        self.propertyFullAddress = self.propertyIntroSection.locator('h1')
+        self.propertyDetails = self.propertyIntroSection.locator('h2')
         # Property Details Section
         self.propertyDetailsSection = page.locator(selectors['propertyDetailsSection'])
-
+        self.propertyDetailsTable = self.propertyDetailsSection.locator('table')
+        self.propertyDetailsCaption = self.propertyDetailsTable.locator('caption')
+        self.propertyDetailsRow = self.propertyDetailsTable.locator('tr')
         # Claim Home Section
         self.claimHomeSection = page.locator(selectors['claimHomeSection'])
-
+        self.claimHomeHeader = self.claimHomeSection.locator('.NewIcon__NewIcon')
+        self.calimHomeTitle = self.claimHomeSection.locator('.HomeownerUpsellAd__Title')
+        self.claimHomeDesc = self.claimHomeSection.locator('.HomeownerUpsellAd__Description')
+        self.claimHomeButton = self.claimHomeSection.get_by_role('button', name='Claim home')
         # Map Section
         self.mapSection = page.locator(selectors['mapSection'])
-
+        self.tabList = self.mapSection.get_by_role('tablist')
+        self.tabListButton = self.tabList.get_by_role('tab')
+        self.zoomInButton = self.mapSection.locator('[data-hc-name="zoom in"]')
+        self.zoomOutButton = self.mapSection.locator('[data-hc-name="zoom out"]')
         # AVM Section
         self.avmSection = page.locator('[data-hc-name="avm-breakdown"]')
 
