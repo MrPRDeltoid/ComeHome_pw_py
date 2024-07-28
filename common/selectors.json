@@ -6,6 +6,7 @@
         "loginLink": "[data-event-name='click_login_cta']",
         "signupLink": "[data-event-name='click_signup_cta']",
         "closeButton": "[data-hc-name='close-dialog-button']",
+        "topBar": ".PropertyPageTopBarComeHome__PropertyPageTopBar",
         "footerSection": "[data-hc-name='footer-section']"
     },
     "home_page": {
@@ -37,7 +38,6 @@
         "subSection": "[data-hc-name='sub-module']"
     },
     "property_page": {
-        "topBar": ".PropertyPageTopBarComeHome__PropertyPageTopBar",
         "photoSection": "[data-hc-name='carousel-section']",
         "propertyOptionsPanel": "[data-hc-name='summary-options-panel']",
         "propertyIntroSection": "[data-hc-name='property-intro-section']",

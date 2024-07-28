@@ -22,11 +22,6 @@ class PropertyPage(BasePage):
         with open(r".\common\selectors.json", mode="r", encoding="utf-8") as json_data:
             selectors = json.load(json_data)['property_page']
 
-        # Top Bar Section
-        self.topBar = page.locator(selectors['topBar'])
-        self.breadcrumbs = self.topBar.locator('[data-hc-name="breadcrumbs"]')
-        self.publicViewButton = self.topBar.locator('[data-hc-name="public-view-button"]')
-        self.ownerViewButton = self.topBar.locator('[data-hc-name="owner-view-button"]')
         # Photo Section
         self.photoSection = page.locator(selectors['photoSection'])
         # Property Options Panel
@@ -68,3 +63,8 @@ class PropertyPage(BasePage):
     def goto(self, slug):
         URL = self.get_url(slug)
         self.page.goto(URL)
+    
+    def get_property_page_details(self, data):
+        full_address = self.construct_full_address(data)
+        slug = self.construct_slug(data)
+        return full_address, slug

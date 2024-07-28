@@ -8,7 +8,6 @@ exports.PropertyPage = class PropertyPage extends BasePage {
         super(page);
         this.page = page;
 
-        this.topBar = page.locator(property_page.topBar);
         this.photoSection = page.locator(property_page.photoSection);
         this.photoSectionImage = page.locator(property_page.photoSection).getByRole('img');
         this.propertyOptionsPanel = page.locator(property_page.propertyOptionsPanel);

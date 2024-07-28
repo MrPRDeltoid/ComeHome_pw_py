@@ -1,4 +1,3 @@
-import json
 from playwright.sync_api import Page, expect
 from pages.home_page import HomePage
 from pages.property_page import PropertyPage
@@ -36,8 +35,7 @@ def test_correct_text_and_elements_track_view(home_page: HomePage, setup):
 
 def test_search_find_view(page: Page, home_page: HomePage, property_page: PropertyPage, setup):
     """Given Find a home is selected, enter existing property in search field to verify correct property page loads"""
-    with open(r".\.\data\properties.json", mode="r", encoding="utf-8") as data_file:
-        property_data = json.load(data_file)['property1']
+    property_data = home_page.get_property_data('property1')
     home_page.search_for_property(property_data['street'])
     full_address = home_page.construct_full_address(property_data)
     slug = home_page.construct_slug(property_data)
@@ -46,8 +44,7 @@ def test_search_find_view(page: Page, home_page: HomePage, property_page: Proper
 
 def test_search_track_view(page: Page, home_page: HomePage, homeowner_page: HomeownerPage, setup):
     """Given My home value is selected, enter existing property in search field to verify correct homeowner page loads"""
-    with open(r".\.\data\properties.json", mode="r", encoding="utf-8") as data_file:
-        property_data = json.load(data_file)['property1']
+    property_data = home_page.get_property_data('property1')
     home_page.trackHomeButton.click()
     home_page.search_for_property(property_data['street'])
     full_address = home_page.construct_full_address(property_data)

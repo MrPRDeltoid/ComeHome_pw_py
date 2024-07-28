@@ -12,6 +12,7 @@ export class BasePage {
     this.loginLink = page.locator(base_page.loginLink);
     this.signupLink = page.locator(base_page.signupLink);
     this.closeButton = page.locator(base_page.closeButton);
+    this.topBar = page.locator(base_page.topBar);
     this.footerSection = page.locator(base_page.footerSection);
   }
 

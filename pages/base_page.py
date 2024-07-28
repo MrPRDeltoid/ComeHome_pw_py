@@ -48,6 +48,11 @@ class BasePage:
         self.signupButton = self.joinLoginDialog.get_by_role('button', name = "Sign Up")
         self.loginButton = self.joinLoginDialog.get_by_role('button', name="Log In")
         self.errorMessage = self.joinLoginDialog.get_by_role('alert')
+        # Top Bar Section common to Property Page and Homeowner Page
+        self.topBar = page.locator(selectors['topBar'])
+        self.breadcrumbs = self.topBar.locator('[data-hc-name="breadcrumbs"]')
+        self.publicViewButton = self.topBar.locator('[data-hc-name="public-view-button"]')
+        self.ownerViewButton = self.topBar.locator('[data-hc-name="owner-view-button"]')
         # Footer Section
         self.footerSection = page.locator(selectors['footerSection'])
 
@@ -64,6 +69,11 @@ class BasePage:
                 self.confirmCheck.check()
         self.emailField.fill(email)
         self.passwordField.fill(password)
+    
+    def get_property_data(self, property):
+        with open(r".\.\data\properties.json", mode="r", encoding="utf-8") as data_file:
+            property_data = json.load(data_file)[property]
+        return property_data
     
     def construct_full_address(self, data):
         full_address = f"{data['street']} {data['city']} {data['state']} {data['zip']}"
