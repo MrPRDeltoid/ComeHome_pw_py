@@ -41,6 +41,7 @@ class PropertyPage(BasePage):
         self.propertyDetailsTable = self.propertyDetailsSection.locator('table')
         self.propertyDetailsCaption = self.propertyDetailsTable.locator('caption')
         self.propertyDetailsRow = self.propertyDetailsTable.locator('tr')
+        self.propertyDetailsAttribution = self.propertyDetailsSection.locator('.AdditionalHomeDetails__Legal')
         # Claim Home Section
         self.claimHomeSection = page.locator(selectors['claimHomeSection'])
         self.claimHomeHeader = self.claimHomeSection.locator('.NewIcon__NewIcon')
@@ -65,6 +66,13 @@ class PropertyPage(BasePage):
         self.page.goto(URL)
     
     def get_property_page_details(self, data):
-        full_address = self.construct_full_address(data)
-        slug = self.construct_slug(data)
-        return full_address, slug
+        details = {}
+        details['full_address'] = self.construct_full_address(data)
+        details['slug'] = self.construct_slug(data)
+        return details
+    
+    def get_property_details_data(self):
+        details = {}
+        for row in range(self.propertyDetailsRow.count()):
+            details[self.propertyDetailsRow.locator('th').nth(row).text_content()] = self.propertyDetailsRow.locator('td').nth(row).text_content()
+        return details

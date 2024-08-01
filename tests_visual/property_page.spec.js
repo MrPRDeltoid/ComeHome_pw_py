@@ -19,16 +19,22 @@ test.describe('The Property Page', () => {
 
         await expect(property_page.mainMenu).toHaveScreenshot('property_page_mainMenu.png');
         await expect(property_page.topBar).toHaveScreenshot('property_page_topBar.png');
-        await expect(property_page.photoSectionImage).toBeVisible();  // NOTE: Required to allow image to render
-        await expect(property_page.photoSection).toHaveScreenshot('property_page_photoSection.png');
-        await expect(property_page.propertyOptionsPanel).toHaveScreenshot('property_page_propertyOptionsPanel.png', { maxDiffPixelRatio: 0.01 });
+        if (browserName != 'firefox') {  // TODO: Image does not render in firefox before screenshot is taken
+            await expect(property_page.photoSectionImage).toBeVisible();  // NOTE: Required to allow image to render
+            await expect(property_page.photoSection).toHaveScreenshot('property_page_photoSection.png',
+                { mask: [property_page.propertyOptionsPanel] });  // Mask out the overlaid options panel
+        }
+        await expect(property_page.propertyOptionsPanel).toHaveScreenshot('property_page_propertyOptionsPanel.png',
+            { maxDiffPixelRatio: 0.01, mask: [property_page.propertyOptionsPanel.locator('[data-hc-name="listing-status"]')] }); // Mask out the listing status section, as values can change
         await expect(property_page.propertyIntroSection).toHaveScreenshot('property_page_propertyIntroSection.png');
-        await expect(property_page.propertyDetailsSection).toHaveScreenshot('property_page_propertyDetailsSection.png', { maxDiffPixelRatio: 0.01 });
+        await expect(property_page.propertyDetailsSection).toHaveScreenshot('property_page_propertyDetailsSection.png',
+            { maxDiffPixelRatio: 0.01 });  // NOTE: May need to be updated every year when Tax Year and Tax Amount may change
         await expect(property_page.claimHomeSection).toHaveScreenshot('property_page_claimHomeSection.png');
         await expect(property_page.mapSectionImage).toHaveAttribute('data-state', 'active');  // NOTE: Required to allow map to render
         if (browserName != 'firefox') {  // TODO: Investigate why firefox has issues with this image not loading succinctly
             await expect(property_page.mapSection).toHaveScreenshot('property_page_mapSection.png');
         }   
-        await expect(property_page.footerSection).toHaveScreenshot('property_page_footerSection.png', { maxDiffPixelRatio: 0.01 });
+        await expect(property_page.footerSection).toHaveScreenshot('property_page_footerSection.png',
+            { maxDiffPixelRatio: 0.01 });
     });
 });

@@ -6,10 +6,10 @@ from pages.homeowner_page import HomeownerPage
 def test_top_bar_text_and_elements(page: Page, property_page: PropertyPage, setup_property_page):
     """Check top bar address and view buttons"""
     property_data = property_page.get_property_data('property1')
-    full_address, slug = property_page.get_property_page_details(property_data)
-    setup_property_page(slug)
-    expect(page).to_have_url(property_page.get_url(slug))
-    expect(page).to_have_title(property_page.get_title(full_address))
+    property_details = property_page.get_property_page_details(property_data)
+    setup_property_page(property_details['slug'])
+    expect(page).to_have_url(property_page.get_url(property_details['slug']))
+    expect(page).to_have_title(property_page.get_title(property_details['full_address']))
     expect(property_page.breadcrumbs).to_have_text(f"Home{property_data['city']}, {property_data['state']}{property_data['zip']}{property_data['street']}")
     expect(property_page.publicViewButton).to_have_text("Currently showingPublic view")
     expect(property_page.publicViewButton).to_have_attribute('data-state', 'active')
@@ -19,17 +19,17 @@ def test_top_bar_text_and_elements(page: Page, property_page: PropertyPage, setu
 def test_top_bar_view_toggle(page: Page, property_page: PropertyPage, homeowner_page: HomeownerPage, setup_property_page):
     """Check that clicking Public/Owner toggle buttons shows correct views"""
     property_data = property_page.get_property_data('property1')
-    full_address, slug = property_page.get_property_page_details(property_data)
-    setup_property_page(slug)
+    property_details = property_page.get_property_page_details(property_data)
+    setup_property_page(property_details['slug'])
     # Click Owner View toggle
     property_page.ownerViewButton.click()
-    expect(page).to_have_url(homeowner_page.get_url_property(slug))
-    expect(page).to_have_title(homeowner_page.get_title_property(full_address))
+    expect(page).to_have_url(homeowner_page.get_url_property(property_details['slug']))
+    expect(page).to_have_title(homeowner_page.get_title_property(property_details['full_address']))
     expect(homeowner_page.publicViewButton).to_have_attribute('data-state', 'inactive')
     expect(homeowner_page.ownerViewButton).to_have_attribute('data-state', 'active')
     # Click Public View toggle
     property_page.publicViewButton.click()
-    expect(page).to_have_url(property_page.get_url(slug))
-    expect(page).to_have_title(property_page.get_title(full_address))
+    expect(page).to_have_url(property_page.get_url(property_details['slug']))
+    expect(page).to_have_title(property_page.get_title(property_details['full_address']))
     expect(property_page.publicViewButton).to_have_attribute('data-state', 'active')
     expect(property_page.ownerViewButton).to_have_attribute('data-state', 'inactive')
