@@ -1,48 +1,48 @@
 {
     "base_page": {
-        "mainMenu": "[data-hc-name='top-section']",
+        "mainMenu": "[data-hc-name=top-section]",
         "joinLoginButton": "Join or log in",
-        "joinLoginDialog": "[class$='SlideInModal__ModalWithCloseIcon']",
-        "loginLink": "[data-event-name='click_login_cta']",
-        "signupLink": "[data-event-name='click_signup_cta']",
-        "closeButton": "[data-hc-name='close-dialog-button']",
+        "joinLoginDialog": "[class$=SlideInModal__ModalWithCloseIcon]",
+        "loginLink": "[data-event-name=click_login_cta]",
+        "signupLink": "[data-event-name=click_signup_cta]",
+        "closeButton": "[data-hc-name=close-dialog-button]",
         "topBar": ".PropertyPageTopBarComeHome__PropertyPageTopBar",
-        "footerSection": "[data-hc-name='footer-section']"
+        "footerSection": "[data-hc-name=footer-section]"
     },
     "home_page": {
-        "topSection": "[class$='__TopSection']",
-        "photoSection": "[class$='__PhotoSection']",
-        "trackOrBuySection": "[class$='__HomeSubpageTrackOrBuyHome']",
-        "agentSection": "[class$='__HomeSubpageYourTeamAgent']"
+        "topSection": "[class$=__TopSection]",
+        "photoSection": "[class$=__PhotoSection]",
+        "trackOrBuySection": "[class$=__HomeSubpageTrackOrBuyHome]",
+        "agentSection": "[class$=__HomeSubpageYourTeamAgent]"
     },
     "search_page": {
         "searchBar": ".SearchPageMap__TopBar",
-        "mapSection": "[data-hc-name='map-section']",
-        "propertySection": "[data-hc-name='property-card-section']"
+        "mapSection": "[data-hc-name=map-section]",
+        "propertySection": "[data-hc-name=property-card-section]"
     },
     "homeowner_page": {
-        "mainSection": "[data-testid='loading-section']",
-        "avmSection": "[data-hc-name='avm-section']",
+        "mainSection": "[data-testid=loading-section]",
+        "avmSection": "[data-hc-name=avm-section]",
         "cardsSection": ".HODashboard__CardsContainer"
     },
     "watchlist_page": {
         "headerSection": ".WatchListHeader__WatchListHeader",
-        "loggedOutSection": "[data-hc-name='logged-out-section']"
+        "loggedOutSection": "[data-hc-name=logged-out-section]"
     },
     "alerts_page": {
         "headerSection": ".AlertsHeader__AlertsHeadingBox",
-        "loggedOutSection": "[data-hc-name='logged-out-section']"
+        "loggedOutSection": "[data-hc-name=logged-out-section]"
     },
     "agent_page": {
-        "topSection": "[data-hc-name='top-module']",
-        "subSection": "[data-hc-name='sub-module']"
+        "topSection": "[data-hc-name=top-module]",
+        "subSection": "[data-hc-name=sub-module]"
     },
     "property_page": {
-        "photoSection": "[data-hc-name='carousel-section']",
-        "propertyOptionsPanel": "[data-hc-name='summary-options-panel']",
-        "propertyIntroSection": "[data-hc-name='property-intro-section']",
+        "photoSection": "[data-hc-name=carousel-section]",
+        "propertyOptionsPanel": "[data-hc-name=summary-options-panel]",
+        "propertyIntroSection": "[data-hc-name=property-intro-section]",
         "propertyDetailsSection": ".AdditionalHomeDetails__AdditionalHomeDetails",
-        "claimHomeSection": "[data-hc-name='upsell-section']",
+        "claimHomeSection": "[data-hc-name=upsell-section]",
         "mapSection": ".MapPropertyPage__MapPropertyPage"
     }
 }

@@ -26,9 +26,15 @@ class PropertyPage(BasePage):
         self.photoSection = page.locator(selectors['photoSection'])
         # Property Options Panel
         self.propertyOptionsPanel = page.locator(selectors['propertyOptionsPanel'])
-        self.listingStatus = self.propertyOptionsPanel.locator('[data-hc-name="listing-status"]')
+        self.listingStatus = self.propertyOptionsPanel.locator('[data-hc-name=listing-status]')
+        self.listingStatusHeader = self.listingStatus.locator('.PDPRightRailCard__ListingStatus')
+        self.listingStatusMonthlyPayment = self.listingStatus.locator('[data-hc-name=monthly-payment]')
+        self.listingStatusMortgageInfoButton = self.listingStatusMonthlyPayment.get_by_label('Toggle mortgage info')
+        self.mortgageInfo = self.propertyOptionsPanel.locator('.PDPRightRailCard__MortgageInfo')
+        self.mortgageInfoLabel = self.mortgageInfo.locator('[class$=__Label]')
+        self.mortgageInfoValue = self.mortgageInfo.locator('[class$=__Value]')
         self.getPreApprovedButton = self.propertyOptionsPanel.get_by_label('Get pre-approved')
-        self.contactAgentButton = self.propertyOptionsPanel.locator('[data-hc-name="contact-agent-button"]')
+        self.contactAgentButton = self.propertyOptionsPanel.locator('[data-hc-name=contact-agent-button]')
         self.shareButton = self.propertyOptionsPanel.get_by_label('share')
         self.saveButton = self.propertyOptionsPanel.get_by_label('Save this property to your Watchlist')
         self.mlsAttribution = self.propertyOptionsPanel.locator('.PDPRightRailCard__MLSAttribution')
@@ -52,13 +58,13 @@ class PropertyPage(BasePage):
         self.mapSection = page.locator(selectors['mapSection'])
         self.tabList = self.mapSection.get_by_role('tablist')
         self.tabListButton = self.tabList.get_by_role('tab')
-        self.zoomInButton = self.mapSection.locator('[data-hc-name="zoom in"]')
-        self.zoomOutButton = self.mapSection.locator('[data-hc-name="zoom out"]')
+        self.zoomInButton = self.mapSection.locator('[data-hc-name=zoom in]')
+        self.zoomOutButton = self.mapSection.locator('[data-hc-name=zoom out]')
         # AVM Section
-        self.avmSection = page.locator('[data-hc-name="avm-breakdown"]')
+        self.avmSection = page.locator('[data-hc-name=avm-breakdown]')
 
         # AVM Breakout Section
-        self.avmBreakoutSection = page.locator('[data-hc-name="avm-breakout-section"]')
+        self.avmBreakoutSection = page.locator('[data-hc-name=avm-breakout-section]')
 
     # Methods
     def goto(self, slug):
@@ -66,13 +72,21 @@ class PropertyPage(BasePage):
         self.page.goto(URL)
     
     def get_property_page_details(self, data):
-        details = {}
-        details['full_address'] = self.construct_full_address(data)
-        details['slug'] = self.construct_slug(data)
-        return details
+        res = {}
+        res['full_address'] = self.construct_full_address(data)
+        res['slug'] = self.construct_slug(data)
+        return res
     
     def get_property_details_data(self):
-        details = {}
+        res = {}
+        label = self.propertyDetailsRow.locator('th')
+        value = self.propertyDetailsRow.locator('td')
         for row in range(self.propertyDetailsRow.count()):
-            details[self.propertyDetailsRow.locator('th').nth(row).text_content()] = self.propertyDetailsRow.locator('td').nth(row).text_content()
-        return details
+            res[label.nth(row).text_content()] = value.nth(row).text_content()
+        return res
+    
+    def get_mortgage_data(self):
+        res = {}
+        for info in range(self.mortgageInfoLabel.count()):
+            res[self.mortgageInfoLabel.nth(info).text_content()] = self.mortgageInfoValue.nth(info).text_content()
+        return res

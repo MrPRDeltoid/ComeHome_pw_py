@@ -32,6 +32,8 @@ class HomeownerPage(BasePage):
 
         # AVM Section
         self.avmSection = self.page.locator(selectors['avmSection'])
+        self.avmmSectionAddress = self.avmSection.locator('[data-hc-name=avm-address]').locator('h1')
+        self.avmSectionDetails = self.avmSection.locator('[data-hc-name=avm-property-details]')
 
         # Property Cards Section
         self.cardsSection = self.page.locator(selectors['cardsSection'])

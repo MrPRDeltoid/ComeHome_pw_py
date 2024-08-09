@@ -19,18 +19,18 @@ class WatchlistPage(BasePage):
 
         # Header Section
         self.headerSection = self.page.locator(selectors['headerSection'])
-        self.savedHomesButton = self.headerSection.locator('[data-hc-name="saved-homes-button"]')
-        self.savedSearchesButton = self.headerSection.locator('[data-hc-name="saved-searches-button"]')
-        self.buttonTitle = self.page.locator('[data-hc-name="title"]')
-        self.buttonDesc = self.page.locator('[data-hc-name="desc"]')
-        self.buttonHighlight = self.page.locator('[data-hc-name="highlight"]')
+        self.savedHomesButton = self.headerSection.locator('[data-hc-name=saved-homes-button]')
+        self.savedSearchesButton = self.headerSection.locator('[data-hc-name=saved-searches-button]')
+        self.buttonTitle = self.page.locator('[data-hc-name=title]')
+        self.buttonDesc = self.page.locator('[data-hc-name=desc]')
+        self.buttonHighlight = self.page.locator('[data-hc-name=highlight]')
         # Logged Out Section
         self.loggedOutSection = self.page.locator(selectors['loggedOutSection'])
-        self.icon = self.loggedOutSection.locator('[data-hc-name="icon"]')
-        self.title = self.loggedOutSection.locator('[data-hc-name="title"]')
-        self.desc = self.loggedOutSection.locator('[data-hc-name="desc"]')
-        self.signupButton = self.loggedOutSection.locator('[data-hc-name="signup-button]')
-        self.loginButton = self.loggedOutSection.locator('[data-hc-name="login-button"]')
+        self.icon = self.loggedOutSection.locator('[data-hc-name=icon]')
+        self.title = self.loggedOutSection.locator('[data-hc-name=title]')
+        self.desc = self.loggedOutSection.locator('[data-hc-name=desc]')
+        self.signupButton = self.loggedOutSection.locator('[data-hc-name=signup-button]')
+        self.loginButton = self.loggedOutSection.locator('[data-hc-name=login-button]')
     
     # Methods
     def goto(self):
