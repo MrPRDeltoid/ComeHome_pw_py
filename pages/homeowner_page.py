@@ -24,7 +24,7 @@ class HomeownerPage(BasePage):
         self.page = page
 
         # Load in common selectors from json file
-        with open(r".\common\selectors.json", mode="r", encoding="utf-8") as json_data:
+        with open(BasePage.SELECTORS_FILE_PATH, mode="r", encoding="utf-8") as json_data:
             selectors = json.load(json_data)['homeowner_page']
 
         # Main Section(shown when no address is selected)

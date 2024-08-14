@@ -14,7 +14,7 @@ class AgentPage(BasePage):
         self.page = page
 
         # Load in common selectors from json file
-        with open(r".\common\selectors.json", mode="r", encoding="utf-8") as json_data:
+        with open(BasePage.SELECTORS_FILE_PATH, mode="r", encoding="utf-8") as json_data:
             selectors = json.load(json_data)['agent_page']
 
         # Top Section

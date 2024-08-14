@@ -1,17 +1,19 @@
 import json
+from pathlib import Path
 from playwright.sync_api import Page
 
 
 class BasePage:
     """Locators and methods common to all pages"""
     BASE_URL = 'https://www.comehome.com/'
+    SELECTORS_FILE_PATH = Path("common/selectors.json")
 
     # Locators
     def __init__(self, page: Page):
         self.page = page
 
         # Load in common selectors from json file
-        with open(r".\common\selectors.json", mode="r", encoding="utf-8") as json_data:
+        with open(self.SELECTORS_FILE_PATH, mode="r", encoding="utf-8") as json_data:
             selectors = json.load(json_data)['base_page']
 
         # Main Menu
