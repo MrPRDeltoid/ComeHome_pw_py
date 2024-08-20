@@ -19,7 +19,19 @@ class SearchPage(BasePage):
 
         # Search Section
         self.searchBar = page.locator(selectors['searchBar'])
-
+        self.searchField = self.searchBar.locator('[data-hc-name=search-field]')
+        self.searchInput = self.searchField.get_by_role('combobox')
+        self.searchButton = self.searchField.get_by_role('button').last
+        self.searchResults = self.searchField.get_by_role('listbox')
+        self.priceButton = self.searchBar.locator('[data-hc-name=list-price-filter]')
+        self.priceMenu = self.priceButton.get_by_role('menu')
+        self.propertyTypeButton = self.searchBar.locator('[data-hc-name=property-type-filter]')
+        self.propertyTypeMenu = self.propertyTypeButton.get_by_role('menu')
+        self.bedsButton = self.searchBar.locator('[data-hc-name=beds-filter]')
+        self.bedsMenu = self.bedsButton.get_by_role('menu')
+        self.moreFiltersButton = self.searchBar.locator('[data-hc-name=filters-filter]')
+        self.moreFiltersMenu = page.locator('[data-hc-name=tooltip-content]')
+        self.saveSearchButton = self.searchBar.locator('[data-hc-name=save-filter-button]')
         # Map Section
         self.mapSection = page.locator(selectors['mapSection'])
 
@@ -30,3 +42,7 @@ class SearchPage(BasePage):
     # Methods
     def goto(self):
         self.page.goto(self.URL)
+    
+    def search_for_property(self, property):
+        self.searchInput.fill(property)
+        self.searchButton.click()
