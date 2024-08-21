@@ -11,8 +11,9 @@ from pages.property_page import PropertyPage
 
 
 @pytest.fixture()
-def setup(home_page: HomePage):
+def setup(page: Page, home_page: HomePage):
     home_page.goto()
+    page.set_viewport_size({"width": 1920, "height": 1080})
 
 @pytest.fixture()
 def base_page(page: Page):

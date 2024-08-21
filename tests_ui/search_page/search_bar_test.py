@@ -34,16 +34,44 @@ def test_price_filter_menu(search_page: SearchPage, setup_search_page):
     expect(search_page.priceButton).to_have_text('Price: Any')
     search_page.priceButton.click()
     expect(search_page.priceMenu).to_be_visible()
-    expect(search_page.priceMenu.locator('[id^=left-label-]')).to_have_text('Min Price')
-    expect(search_page.priceMenu.locator('.SearchTopBarFilters__DropdownRangeMin')).to_have_text('No Min')
-    expect(search_page.priceMenu.locator('[id^=right-label-]')).to_have_text('Max Price')
-    expect(search_page.priceMenu.locator('.SearchTopBarFilters__DropdownRangeMax')).to_have_text('No Max')
+    expect(search_page.priceMinLabel).to_have_text('Min Price')
+    expect(search_page.priceMinDropdown).to_have_text('No Min')
+    expect(search_page.priceMaxLabel).to_have_text('Max Price')
+    expect(search_page.priceMaxDropdown).to_have_text('No Max')
     # Click the min/max dropdowns to verify options
-    search_page.priceMenu.locator('.SearchTopBarFilters__DropdownRangeMin').get_by_role('button').click()
+    search_page.priceMinDropdown.get_by_role('button').click()
     exp_price_options.insert(0, "No Min")
     min_options = search_page.priceMenu.get_by_role('listbox').get_by_role('option')
     verify_dropdown_options(min_options, exp_price_options)
-    search_page.priceMenu.locator('.SearchTopBarFilters__DropdownRangeMax').get_by_role('button').click()
+    search_page.priceMaxDropdown.get_by_role('button').click()
     exp_price_options[0] = 'No Max'
     max_options = search_page.priceMenu.get_by_role('listbox').get_by_role('option')
     verify_dropdown_options(max_options, exp_price_options)
+
+def test_property_type_filter_menu(search_page: SearchPage, setup_search_page):
+    """Click the Property Type filter button and verify menu options"""
+    exp_property_type_checkboxes = ['House', 'Townhouse', 'Condo', 'Co-op', 'All']
+    expect(search_page.propertyTypeButton).to_have_text('Property Type: All')
+    search_page.propertyTypeButton.click()
+    expect(search_page.propertyTypeMenu).to_be_visible()
+    checkboxes = search_page.propertyTypeCheckbox
+    for checkbox in range(checkboxes.count()):
+        # Verify correct labels for each checkbox
+        checkbox_label = search_page.propertyTypeCheckboxLabel.nth(checkbox).text_content()
+        assert checkbox_label == exp_property_type_checkboxes[checkbox]
+        # Verify only 'All' is default checked
+        if checkbox_label == "All":
+            expect(checkboxes.nth(checkbox).get_by_role('checkbox')).to_be_checked()
+        else:
+            expect(checkboxes.nth(checkbox).get_by_role('checkbox')).not_to_be_checked()
+
+def test_beds_filter_menu(search_page: SearchPage, setup_search_page):
+    """Click the Beds filter button and verify menu contents"""
+    expect(search_page.bedsButton).to_have_text('Beds: Any')
+    search_page.bedsButton.click()
+    expect(search_page.bedsMenu).to_be_visible()
+    expect(search_page.bedsMenuButton.first).to_have_text('-')
+    expect(search_page.bedsMenuButton.first).to_be_disabled()
+    expect(search_page.bedsMenuLabel).to_have_text('0+')
+    expect(search_page.bedsMenuButton.last).to_have_text('+')
+    expect(search_page.bedsMenuButton.last).to_be_enabled()
