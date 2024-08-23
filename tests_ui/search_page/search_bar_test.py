@@ -3,12 +3,6 @@ from pages.property_page import PropertyPage
 from pages.search_page import SearchPage
 
 
-def verify_dropdown_options(options, exp_options):
-    for option in range(options.count()):
-        option_text = options.nth(option).text_content()
-        assert option_text == exp_options[option]
-    options.nth(0).click()
-
 def test_search_property(page: Page, property_page: PropertyPage, search_page: SearchPage, setup_search_page):
     """Enter valid property in field, verify correct search results and clicking result loads correct property page"""
     property_data = search_page.get_property_data('property1')
@@ -26,11 +20,7 @@ def test_search_property(page: Page, property_page: PropertyPage, search_page: S
 
 def test_price_filter_menu(search_page: SearchPage, setup_search_page):
     """Click the Price filter button and verify menu options"""
-    exp_price_options = ['$50,000', '$75,000', '$100,000', '$150,000', '$200,000', '$250,000', '$300,000',
-                         '$350,000', '$400,000', '$450,000', '$500,000', '$600,000', '$700,000', '$800,000',
-                         '$900,000', '$1,000,000', '$1,500,000', '$2,000,000', '$2,500,000', '$3,000,000',
-                         '$3,500,000', '$4,000,000', '$4,500,000', '$5,000,000', '$6,000,000', '$7,000,000',
-                         '$8,000,000', '$9,000,000', '$10,000,000']
+    exp_price_options = list(search_page.PRICE_FILTER_OPTIONS)
     expect(search_page.priceButton).to_have_text('Price: Any')
     search_page.priceButton.click()
     expect(search_page.priceMenu).to_be_visible()
@@ -42,28 +32,25 @@ def test_price_filter_menu(search_page: SearchPage, setup_search_page):
     search_page.priceMinDropdown.get_by_role('button').click()
     exp_price_options.insert(0, "No Min")
     min_options = search_page.priceMenu.get_by_role('listbox').get_by_role('option')
-    verify_dropdown_options(min_options, exp_price_options)
+    assert search_page.get_filter_dropdown_options(min_options) == exp_price_options
     search_page.priceMaxDropdown.get_by_role('button').click()
     exp_price_options[0] = 'No Max'
     max_options = search_page.priceMenu.get_by_role('listbox').get_by_role('option')
-    verify_dropdown_options(max_options, exp_price_options)
+    assert search_page.get_filter_dropdown_options(max_options) == exp_price_options
 
 def test_property_type_filter_menu(search_page: SearchPage, setup_search_page):
     """Click the Property Type filter button and verify menu options"""
-    exp_property_type_checkboxes = ['House', 'Townhouse', 'Condo', 'Co-op', 'All']
     expect(search_page.propertyTypeButton).to_have_text('Property Type: All')
     search_page.propertyTypeButton.click()
     expect(search_page.propertyTypeMenu).to_be_visible()
-    checkboxes = search_page.propertyTypeCheckbox
-    for checkbox in range(checkboxes.count()):
-        # Verify correct labels for each checkbox
-        checkbox_label = search_page.propertyTypeCheckboxLabel.nth(checkbox).text_content()
-        assert checkbox_label == exp_property_type_checkboxes[checkbox]
-        # Verify only 'All' is default checked
-        if checkbox_label == "All":
-            expect(checkboxes.nth(checkbox).get_by_role('checkbox')).to_be_checked()
-        else:
-            expect(checkboxes.nth(checkbox).get_by_role('checkbox')).not_to_be_checked()
+    checkboxes = search_page.propertyTypeMenu.get_by_role('checkbox')
+    labels = search_page.propertyTypeCheckbox.locator('label')
+    # Verify correct labels and default check state for each checkbox
+    assert search_page.get_filter_checkbox_settings(checkboxes, labels) == {'House': False,
+                                                                            'Townhouse': False,
+                                                                            'Condo': False,
+                                                                            'Co-op': False,
+                                                                            'All': True}
 
 def test_beds_filter_menu(search_page: SearchPage, setup_search_page):
     """Click the Beds filter button and verify menu contents"""
@@ -75,3 +62,54 @@ def test_beds_filter_menu(search_page: SearchPage, setup_search_page):
     expect(search_page.bedsMenuLabel).to_have_text('0+')
     expect(search_page.bedsMenuButton.last).to_have_text('+')
     expect(search_page.bedsMenuButton.last).to_be_enabled()
+
+def test_more_filters_menu(search_page: SearchPage, setup_search_page):
+    """ Click the More filters button and verify menu contents"""
+    expect(search_page.moreFiltersButton).to_have_text('More Filters(1)')
+    search_page.moreFiltersButton.click()
+    expect(search_page.moreFiltersMenu).to_be_visible()
+    expect(search_page.clearFiltersButton).to_have_text('Clear All Filters')
+    exp_filter_labels = ['Listing Status', 'Price', 'Property Type', 'Beds', 'Baths', 'ComeHome Value', 'Square Feet',
+                         'Price per Square Foot', 'Lot Size', 'Days on Market', 'Year Built', 'One-Year Forecast', 'Crime']
+    for row in range(search_page.filterRow.count() - 3):
+        filter_label = search_page.filterRowLabel.nth(row)
+        expect(filter_label).to_have_text(exp_filter_labels[row])
+        if filter_label.text_content() == "Listing Status":
+            checkboxes = search_page.filterRowControl.nth(row).get_by_role('checkbox')
+            labels = search_page.filterRowControl.nth(row).locator('label')
+            assert search_page.get_filter_checkbox_settings(checkboxes, labels) == {'For sale': True,
+                                                                                    'Off Market': False,
+                                                                                    'Pending': False,
+                                                                                    'Under Contract': False,
+                                                                                    'All': False}
+        if filter_label.text_content() == "Price":
+            exp_price_options = list(search_page.PRICE_FILTER_OPTIONS)
+            min_dropdown = search_page.filterRow.nth(row).locator(search_page.filter_dropdown_min)
+            max_dropdown = search_page.filterRow.nth(row).locator(search_page.filter_dropdown_max)
+            expect(min_dropdown).to_have_text('No Min')
+            expect(max_dropdown).to_have_text('No Max')
+            min_dropdown.get_by_role('button').click()
+            exp_price_options.insert(0, 'No Min')
+            min_options = search_page.filterRow.nth(row).get_by_role('listbox').get_by_role('option')
+            assert search_page.get_filter_dropdown_options(min_options) == exp_price_options
+            max_dropdown.get_by_role('button').click()
+            exp_price_options[0] = 'No Max'
+            max_options = search_page.filterRow.nth(row).get_by_role('listbox').get_by_role('option')
+            assert search_page.get_filter_dropdown_options(max_options) == exp_price_options
+        if filter_label.text_content() == "Property Type":
+            checkboxes = search_page.filterRowControl.nth(row).get_by_role('checkbox')
+            labels = search_page.filterRowControl.nth(row).locator('label')
+            assert search_page.get_filter_checkbox_settings(checkboxes, labels) == {'House': False,
+                                                                                    'Townhouse': False,
+                                                                                    'Condo': False,
+                                                                                    'Co-op': False,
+                                                                                    'All': True}
+        if filter_label.text_content() in ['Beds', 'Baths']:
+            expect(search_page.filterRow.nth(row).get_by_role('button').first).to_have_text('-')
+            expect(search_page.filterRow.nth(row).get_by_role('button').first).to_be_disabled()
+            expect(search_page.filterRow.nth(row).locator('.NumberAdjuster__NumberAdjusterControls').locator('.NumberAdjuster__ValueLabel')).to_have_text('0+')
+            expect(search_page.filterRow.nth(row).get_by_role('button').last).to_have_text('+')
+            expect(search_page.filterRow.nth(row).get_by_role('button').last).to_be_enabled()
+    expect(search_page.searchByMLSNumberLink).to_have_attribute('href', '/mls-number')
+    expect(search_page.showAdvancedFiltersButton).to_have_text('Show Advanced Filters')
+    expect(search_page.showAdvancedFiltersButton).to_have_attribute('aria-expanded', 'false')

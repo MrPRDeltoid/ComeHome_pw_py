@@ -17,6 +17,8 @@
     },
     "search_page": {
         "searchBar": ".SearchPageMap__TopBar",
+        "moreFiltersButton": "[data-hc-name=filters-filter]",
+        "moreFiltersMenu": "[data-hc-name=tooltip-content]",
         "mapSection": "[data-hc-name=map-section]",
         "propertySection": "[data-hc-name=property-card-section]"
     },

@@ -20,4 +20,11 @@ test.describe('The Search Page', () => {
         await expect(search_page.searchBar).toHaveScreenshot('search_page_searchBar.png');
         await expect(search_page.footerSection).toHaveScreenshot('search_page_footerSection.png', { maxDiffPixelRatio: 0.01 });
     });
+
+    test('clicking More Filters shows correct menu', async ({ page }) => {
+        const search_page = new SearchPage(page);
+
+        await search_page.moreFiltersButton.click();
+        await expect(search_page.moreFiltersMenu).toHaveScreenshot('search_page_moreFiltersMenu.png');
+    })
 });

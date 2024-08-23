@@ -9,6 +9,8 @@ exports.SearchPage = class SearchPage extends BasePage {
         this.page = page;
 
         this.searchBar = page.locator(search_page.searchBar);
+        this.moreFiltersButton = page.locator(search_page.moreFiltersButton)
+        this.moreFiltersMenu = page.locator(search_page.moreFiltersMenu)
         this.mapSection = page.locator(search_page.mapSection);
         this.propertySection = page.locator(search_page.propertySection);
     }
