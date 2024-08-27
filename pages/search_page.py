@@ -13,8 +13,17 @@ class SearchPage(BasePage):
                             '$900,000', '$1,000,000', '$1,500,000', '$2,000,000', '$2,500,000', '$3,000,000',
                             '$3,500,000', '$4,000,000', '$4,500,000', '$5,000,000', '$6,000,000', '$7,000,000',
                             '$8,000,000', '$9,000,000', '$10,000,000']
-    PROPERTY_TYPE_FILTER_OPTIONS = ['House', 'Townhouse', 'Condo', 'Co-op', 'All']
-    LISTING_STATUS_FILTER_OPTIONS = ['For sale', 'Off Market', 'Pending', 'Under Contract', 'All']
+    SQUARE_FEET_FILTER_OPTIONS = ['500', '1000', '1500', '2000', '2500', '3000', '3500', '4000', '4500', '5000']
+    PRICE_PER_SQFT_FILTER_OPTIONS = ['$20', '$30', '$40', '$50', '$60', '$70', '$80', '$90', '$100', '$150', '$200',
+                                     '$250', '$300', '$350', '$400', '$500', '$600', '$700', '$800', '$900', '$1,000']
+    LOT_SIZE_FILTER_OPTIONS = ['2000 sq. ft.', '3000 sq. ft.', '4000 sq. ft.', '5000 sq. ft.', '6000 sq. ft.', '7000 sq. ft.',
+                               '8000 sq. ft.', '0.25 acres', '0.50 acres', '1.00 acre', '2.00 acres', '3.00 acres', '4.00 acres',
+                               '5.00 acres', '10.00 acres', '20.00 acres', '30.00 acres']
+    YEAR_BUILT_FILTER_OPTIONS = ['2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013',
+                                 '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001',
+                                 '2000', '1995', '1990', '1980', '1970', '1960', '1950', '1940', '1930', '1920', '1910', '1900']
+    DAYS_ON_MARKET_FILTER_OPTIONS = ['Any', '< 1 Day', '< 3 Days', '< 7 Days', '< 14 Days', '< 30 Days', '< 90 Days']
+
 
     # Locators
     def __init__(self, page: Page):
@@ -64,7 +73,6 @@ class SearchPage(BasePage):
         self.saveSearchButton = self.searchBar.locator('[data-hc-name=save-filter-button]')
         # Map Section
         self.mapSection = page.locator(selectors['mapSection'])
-
         # Property Section
         self.propertySection = page.locator(selectors['propertySection'])
 
@@ -76,12 +84,6 @@ class SearchPage(BasePage):
     def search_for_property(self, property):
         self.searchInput.fill(property)
         self.searchButton.click()
-
-    def get_filter_dropdown_options(self, dropdown_options):
-        res = []
-        for option in range(dropdown_options.count()):
-            res.append(dropdown_options.nth(option).text_content())
-        return res
     
     def get_filter_checkbox_settings(self, checkboxes, labels):
         res = {}
