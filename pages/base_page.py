@@ -7,6 +7,7 @@ class BasePage:
     """Locators and methods common to all pages"""
     BASE_URL = 'https://www.comehome.com/'
     SELECTORS_FILE_PATH = Path("common/selectors.json")
+    PROPERTY_DATA_FILE_PATH = Path("data/properties.json")
 
     # Locators
     def __init__(self, page: Page):
@@ -73,7 +74,7 @@ class BasePage:
         self.passwordField.fill(password)
     
     def get_property_data(self, property):
-        with open(r".\.\data\properties.json", mode="r", encoding="utf-8") as data_file:
+        with open(self.PROPERTY_DATA_FILE_PATH, mode="r", encoding="utf-8") as data_file:
             property_data = json.load(data_file)[property]
         return property_data
     
