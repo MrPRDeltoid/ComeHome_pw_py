@@ -1,5 +1,5 @@
 import json
-from playwright.sync_api import Page
+from playwright.sync_api import Page, Locator
 from .base_page import BasePage
 
 
@@ -37,6 +37,7 @@ class SearchPage(BasePage):
         # Common Selectors
         self.filter_dropdown_min = '[class$=__DropdownRangeMin]'
         self.filter_dropdown_max = '[class$=__DropdownRangeMax]'
+        self.filter_slider_value = '.input-range__label--value'
 
         # Search Section
         self.searchBar = page.locator(selectors['searchBar'])
@@ -65,10 +66,11 @@ class SearchPage(BasePage):
         self.moreFiltersMenu = page.locator(selectors['moreFiltersMenu'])
         self.clearFiltersButton = self.moreFiltersMenu.locator('[data-hc-name=clear-all-filters]')
         self.filterRow = self.moreFiltersMenu.locator('[data-hc-name=filter-row]')
-        self.filterRowLabel = self.filterRow.locator('[data-hc-name=row-label]')
+        self.filterRowLabel = self.filterRow.locator('[data-hc-name=row-label], [class$=__FilterSubTitle]')
         self.filterRowControl = self.filterRow.locator('[data-hc-name=row-control]')
+        self.schoolsFilterTitle = self.moreFiltersMenu.locator('legend')
         self.searchByMLSNumberLink = self.moreFiltersMenu.locator('.SearchPageFilters__MLSSearchLink')
-        self.showAdvancedFiltersButton = self.moreFiltersMenu.get_by_label('Show Advanced Filters')
+        self.showAdvancedFiltersButton = self.moreFiltersMenu.locator('.SearchPageFilters__FiltersToggle')
         # Save Search
         self.saveSearchButton = self.searchBar.locator('[data-hc-name=save-filter-button]')
         # Map Section
@@ -85,7 +87,7 @@ class SearchPage(BasePage):
         self.searchInput.fill(property)
         self.searchButton.click()
     
-    def get_filter_checkbox_settings(self, checkboxes, labels):
+    def get_filter_checkbox_settings(self, checkboxes: Locator, labels: Locator):
         res = {}
         for checkbox in range(checkboxes.count()):
             if checkboxes.nth(checkbox).is_checked():

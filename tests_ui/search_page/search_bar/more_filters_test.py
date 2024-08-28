@@ -35,8 +35,9 @@ def test_more_filters_menu(search_page: SearchPage, setup_search_page):
     expect(search_page.moreFiltersMenu).to_be_visible()
     expect(search_page.clearFiltersButton).to_have_text('Clear All Filters')
     exp_filter_labels = ['Listing Status', 'Price', 'Property Type', 'Beds', 'Baths', 'ComeHome Value', 'Square Feet',
-                         'Price per Square Foot', 'Lot Size', 'Days on Market', 'Year Built', 'One-Year Forecast', 'Crime']
-    for row in range(search_page.filterRow.count() - 3):
+                         'Price per Square Foot', 'Lot Size', 'Days on Market', 'Year Built', 'One-Year Forecast', 'Crime',
+                         'Elementary', 'Middle', 'High']
+    for row in range(search_page.filterRow.count()):
         filter_label = search_page.filterRowLabel.nth(row)
         expect(filter_label).to_have_text(exp_filter_labels[row])
         filter_name = filter_label.text_content()
@@ -85,6 +86,20 @@ def test_more_filters_menu(search_page: SearchPage, setup_search_page):
             options = search_page.filterRow.nth(row).get_by_role('listbox').get_by_role('option')
             expect(options).to_have_text(search_page.DAYS_ON_MARKET_FILTER_OPTIONS)
             options.get_by_text('Any').click()
+        if filter_name == "One-Year Forecast":
+            expect(search_page.filterRow.nth(row).locator(search_page.filter_slider_value).first).to_have_text('-10%')
+            expect(search_page.filterRow.nth(row).locator(search_page.filter_slider_value).last).to_have_text('20%')
+        if filter_name == "Crime":
+            expect(search_page.filterRow.nth(row).locator(search_page.filter_slider_value).first).to_have_text('Lowest')
+            expect(search_page.filterRow.nth(row).locator(search_page.filter_slider_value).last).to_have_text('Highest')
+        expect(search_page.schoolsFilterTitle).to_have_text("Schools")
+        if filter_name in ["Elementary", "Middle", "High"]:
+            expect(search_page.filterRow.nth(row).locator(search_page.filter_slider_value).first).to_have_text('0%')
+            expect(search_page.filterRow.nth(row).locator(search_page.filter_slider_value).last).to_have_text('100%')
     expect(search_page.searchByMLSNumberLink).to_have_attribute('href', '/mls-number')
     expect(search_page.showAdvancedFiltersButton).to_have_text('Show Advanced Filters')
     expect(search_page.showAdvancedFiltersButton).to_have_attribute('aria-expanded', 'false')
+    search_page.showAdvancedFiltersButton.click()
+    expect(search_page.showAdvancedFiltersButton).to_have_text('Hide')
+    search_page.showAdvancedFiltersButton.click()
+    expect(search_page.showAdvancedFiltersButton).to_have_text('Show Advanced Filters')
