@@ -27,4 +27,17 @@ test.describe('The Search Page', () => {
         await search_page.moreFiltersButton.click();
         await expect(search_page.moreFiltersMenu).toHaveScreenshot('search_page_moreFiltersMenu.png');
     })
+
+    test('map section shows correct layer control panels', async ({ page }) => {
+        const search_page = new SearchPage(page);
+
+        await search_page.layerButtons.getByText("Crime").click()
+        await expect(search_page.layerControlPanel).toHaveScreenshot('search_page_crimeLayerControlPanel.png')
+        await search_page.layerButtons.getByText("Schools").click()
+        await expect(search_page.layerControlPanel).toHaveScreenshot('search_page_schoolsLayerControlPanel.png')
+        await search_page.layerButtons.getByText("Price").click()
+        await expect(search_page.layerControlPanel).toHaveScreenshot('search_page_priceLayerControlPanel.png')
+        await search_page.layerButtons.getByText("Forecast").click()
+        await expect(search_page.layerControlPanel).toHaveScreenshot('search_page_forecastLayerControlPanel.png')
+    })
 });

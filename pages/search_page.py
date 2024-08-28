@@ -75,6 +75,14 @@ class SearchPage(BasePage):
         self.saveSearchButton = self.searchBar.locator('[data-hc-name=save-filter-button]')
         # Map Section
         self.mapSection = page.locator(selectors['mapSection'])
+        self.layerButtons = self.mapSection.get_by_role('tablist').get_by_role('tab')
+        self.layerControlPanel = self.mapSection.locator(selectors['layerControlPanel'])
+        self.mapNotification = self.mapSection.locator('.SearchPageMap__MapNotification')
+        self.currentLocationButton = self.mapSection.locator('.SearchPageMap__LocationIcon')
+        self.zoomInButton = self.mapSection.get_by_label('zoom in')
+        self.zoomOutButton = self.mapSection.get_by_label('zoom out')
+        self.mapMarkers = self.mapSection.locator('.MapMarkersLayer__Marker')
+        self.mapClusters = self.mapSection.locator('.MapMarkersLayer__MarkerCluster')
         # Property Section
         self.propertySection = page.locator(selectors['propertySection'])
 

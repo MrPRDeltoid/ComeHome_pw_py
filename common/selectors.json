@@ -20,6 +20,7 @@
         "moreFiltersButton": "[data-hc-name=filters-filter]",
         "moreFiltersMenu": "[data-hc-name=tooltip-content]",
         "mapSection": "[data-hc-name=map-section]",
+        "layerControlPanel": ".SearchPageMap__LayerItemsControlInner",
         "propertySection": "[data-hc-name=property-card-section]"
     },
     "homeowner_page": {

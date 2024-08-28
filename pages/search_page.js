@@ -12,6 +12,8 @@ exports.SearchPage = class SearchPage extends BasePage {
         this.moreFiltersButton = page.locator(search_page.moreFiltersButton)
         this.moreFiltersMenu = page.locator(search_page.moreFiltersMenu)
         this.mapSection = page.locator(search_page.mapSection);
+        this.layerButtons = this.mapSection.getByRole('tablist').getByRole('tab')
+        this.layerControlPanel = this.mapSection.locator(search_page.layerControlPanel)
         this.propertySection = page.locator(search_page.propertySection);
     }
     
