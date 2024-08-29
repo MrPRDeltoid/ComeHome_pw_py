@@ -16,7 +16,9 @@ class BasePage:
         # Load in common selectors from json file
         with open(self.SELECTORS_FILE_PATH, mode="r", encoding="utf-8") as json_data:
             selectors = json.load(json_data)['base_page']
-
+        
+        # Body Locator
+        self.body = page.locator('body')
         # Main Menu
         self.mainMenu = page.locator(selectors['mainMenu'])
         self.logo = self.mainMenu.locator('[data-hc-name=comehome-logo]')

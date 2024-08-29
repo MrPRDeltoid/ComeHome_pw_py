@@ -22,7 +22,8 @@
         "moreFiltersMenu": "[data-hc-name=tooltip-content]",
         "mapSection": "[data-hc-name=map-section]",
         "layerControlPanel": ".SearchPageMap__LayerItemsControlInner",
-        "propertySection": "[data-hc-name=property-card-section]"
+        "propertySection": "[data-hc-name=property-card-section]",
+        "lenderCard": ".LenderCTACard__FullCard"
     },
     "homeowner_page": {
         "mainSection": "[data-testid=loading-section]",

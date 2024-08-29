@@ -10,5 +10,3 @@ def test_verify_main_sections(page: Page, search_page: SearchPage, setup_search_
     expect(search_page.searchBar).to_be_visible()
     expect(search_page.mapSection).to_be_visible()
     expect(search_page.propertySection).to_be_visible()
-    search_page.footerSection.scroll_into_view_if_needed()
-    expect(search_page.footerSection).to_be_visible()

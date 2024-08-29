@@ -85,6 +85,20 @@ class SearchPage(BasePage):
         self.mapClusters = self.mapSection.locator('.MapMarkersLayer__MarkerCluster')
         # Property Section
         self.propertySection = page.locator(selectors['propertySection'])
+        self.sortButton = self.propertySection.locator('[data-hc-name=sort-link]')
+        self.sortMenu = self.propertySection.locator('#sortOptionsMenu')
+        self.propertyCount = self.propertySection.locator('[data-hc-name=property-count]')
+        self.lenderCard = self.propertySection.locator(selectors['lenderCard'])
+        self.lenderCardButton = self.propertySection.locator('[data-hc-name=click_lender_cta]')
+        self.propertyCard = self.propertySection.locator('.PropertyCard__PropertyCard')
+        self.propertyCardCarousel = self.propertyCard.locator('[data-hc-name=thumbnail-carousel]')
+        self.propertyCardAddress = self.propertyCard.locator('[data-hc-name=property-address]')
+        self.propertyCardInfo = self.propertyCard.locator('[data-hc-name=property-info]')
+        self.propertyCardStatus = self.propertyCard.locator('[data-hc-name=property-status-text]')
+        self.propertyCardPrice = self.propertyCard.locator('[data-hc-name=property-price]')
+        self.propertyCardPayment = self.propertyCard.locator('[data-hc-name=property-monthly-payment]')
+        self.propertyCardAttribution = self.propertyCard.locator('.PropertyCardValueStacked__BottomLabel')
+        self.loadMoreResultsButton = self.propertySection.locator('.LoadMoreResultsButton__LoadMoreResults')
 
     
     # Methods
