@@ -18,6 +18,7 @@ test.describe('The Home Page', () => {
 
       await expect(home_page.mainMenu).toHaveScreenshot('home_page_mainMenu.png');
       await expect(home_page.topSection).toHaveScreenshot('home_page_topSection.png');
+      await expect(home_page.brokerageSection.last()).toHaveScreenshot('home_page_brokerageSection.png');
       await expect(home_page.photoSection).toHaveScreenshot('home_page_photoSection.png');
       await expect(home_page.trackOrBuySection).toHaveScreenshot('home_page_trackOrBuySection.png');
       await expect(home_page.agentSection).toHaveScreenshot('home_page_agentSection.png');

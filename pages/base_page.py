@@ -27,7 +27,7 @@ class BasePage:
         self.findAnAgentButton = self.mainMenu.locator('[data-hc-name=find-an-agent-button]')
         self.joinLoginButton = self.mainMenu.get_by_label(selectors['joinLoginButton'])
         # Brokerage Attribution Section
-        self.brokerageSection = self.page.locator('[class$=__BrokerageAttribution]')
+        self.brokerageSection = self.page.locator(selectors['brokerageSection'])
         self.brokerageLogo = self.brokerageSection.locator(self.logo)
         self.brokerageContactLink = self.brokerageSection.locator('.BrokerageAttribution__Link')
         self.brokerageText = self.brokerageSection.locator('.BrokerageAttribution__BrokerageSection')

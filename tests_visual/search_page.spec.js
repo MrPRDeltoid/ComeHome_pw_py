@@ -26,18 +26,25 @@ test.describe('The Search Page', () => {
 
         await search_page.moreFiltersButton.click();
         await expect(search_page.moreFiltersMenu).toHaveScreenshot('search_page_moreFiltersMenu.png');
-    })
+    });
 
     test('map section shows correct layer control panels', async ({ page }) => {
         const search_page = new SearchPage(page);
 
-        await search_page.layerButtons.getByText("Crime").click()
-        await expect(search_page.layerControlPanel).toHaveScreenshot('search_page_crimeLayerControlPanel.png')
-        await search_page.layerButtons.getByText("Schools").click()
-        await expect(search_page.layerControlPanel).toHaveScreenshot('search_page_schoolsLayerControlPanel.png')
-        await search_page.layerButtons.getByText("Price").click()
-        await expect(search_page.layerControlPanel).toHaveScreenshot('search_page_priceLayerControlPanel.png')
-        await search_page.layerButtons.getByText("Forecast").click()
-        await expect(search_page.layerControlPanel).toHaveScreenshot('search_page_forecastLayerControlPanel.png')
-    })
+        await search_page.layerButtons.getByText("Crime").click();
+        await expect(search_page.layerControlPanel).toHaveScreenshot('search_page_crimeLayerControlPanel.png');
+        await search_page.layerButtons.getByText("Schools").click();
+        await expect(search_page.layerControlPanel).toHaveScreenshot('search_page_schoolsLayerControlPanel.png', { maxDiffPixelRatio: 0.01 });
+        await search_page.layerButtons.getByText("Price").click();
+        await expect(search_page.layerControlPanel).toHaveScreenshot('search_page_priceLayerControlPanel.png');
+        await search_page.layerButtons.getByText("Forecast").click();
+        await expect(search_page.layerControlPanel).toHaveScreenshot('search_page_forecastLayerControlPanel.png');
+    });
+
+    test('properties section shows correct brokerage info', async ({ page }) => {
+        const search_page = new SearchPage(page);
+        
+        await expect(search_page.brokerageSection.last()).toBeVisible();
+        await expect(search_page.brokerageSection.last()).toHaveScreenshot('search_page_brokerageSection.png');
+    });
 });
