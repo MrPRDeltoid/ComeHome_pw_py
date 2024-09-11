@@ -5,14 +5,6 @@ from .base_page import BasePage
 
 class PropertyPage(BasePage):
     """Locators and methods for the Property Page"""
-    def get_url(self, slug):
-        URL = f"{BasePage.BASE_URL}property-details/{slug}"
-        return URL
-    
-    def get_title(self, address):
-        TITLE = f"{address} | Property Details | ComeHome"
-        return TITLE
-
     # Locators
     def __init__(self, page: Page):
         super().__init__(page)
@@ -41,7 +33,7 @@ class PropertyPage(BasePage):
         # Property Intro Section
         self.propertyIntroSection = page.locator(selectors['propertyIntroSection'])
         self.propertyFullAddress = self.propertyIntroSection.locator('h1')
-        self.propertyDetails = self.propertyIntroSection.locator('h2')
+        self.propertyDetails = self.propertyIntroSection.locator('[data-hc-name=property-info]')
         # Property Details Section
         self.propertyDetailsSection = page.locator(selectors['propertyDetailsSection'])
         self.propertyDetailsTable = self.propertyDetailsSection.locator('table')
@@ -67,17 +59,25 @@ class PropertyPage(BasePage):
         self.avmBreakoutSection = page.locator('[data-hc-name=avm-breakout-section]')
 
     # Methods
-    def goto(self, slug):
-        URL = self.get_url(slug)
-        self.page.goto(URL)
+    def getUrl(self, slug):
+        url = f"{BasePage.BASE_URL}property-details/{slug}"
+        return url
     
-    def get_property_page_details(self, data):
+    def getTitle(self, address):
+        title = f"{address} | Property Details | ComeHome"
+        return title
+    
+    def goto(self, slug):
+        url = self.getUrl(slug)
+        self.page.goto(url)
+    
+    def getPropertyPageDetails(self, data):
         res = {}
-        res['full_address'] = self.construct_full_address(data)
-        res['slug'] = self.construct_slug(data)
+        res['full_address'] = self.constructFullAddress(data)
+        res['slug'] = self.constructSlug(data)
         return res
     
-    def get_property_details_data(self):
+    def getPropertyDetailsData(self):
         res = {}
         label = self.propertyDetailsRow.locator('th')
         value = self.propertyDetailsRow.locator('td')
@@ -85,7 +85,7 @@ class PropertyPage(BasePage):
             res[label.nth(row).text_content()] = value.nth(row).text_content()
         return res
     
-    def get_mortgage_data(self):
+    def getMortgageData(self):
         res = {}
         for info in range(self.mortgageInfoLabel.count()):
             res[self.mortgageInfoLabel.nth(info).text_content()] = self.mortgageInfoValue.nth(info).text_content()

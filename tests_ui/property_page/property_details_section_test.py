@@ -5,8 +5,8 @@ from pages.property_page import PropertyPage
 
 def test_property_details_section_test(property_page: PropertyPage, setup_property_page):
     """Check Property Details Section has correct caption, data, and attribution"""
-    property_data = property_page.get_property_data('property1')
-    property_details = property_page.get_property_page_details(property_data)
+    property_data = property_page.getPropertyData('property1')
+    property_details = property_page.getPropertyPageDetails(property_data)
     setup_property_page(property_details['slug'])
 
     expect(property_page.propertyDetailsCaption).to_have_text("Additional home details")
@@ -25,7 +25,7 @@ def test_property_details_section_test(property_page: PropertyPage, setup_proper
                             'Tax Year': str(date.today().year - 1),  # Last year should be latest tax year
                             'Tax Amount': '',
                             'Property in Flood Zone': '--'}
-    property_details = property_page.get_property_details_data()
+    property_details = property_page.getPropertyDetailsData()
     property_details['Tax Amount'] = ''  # Tax amount can change, just check that the entry exists
     assert property_details == exp_property_details
     expect(property_page.propertyDetailsAttribution).to_have_text("Data provided by CRMLS.")

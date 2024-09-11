@@ -8,16 +8,6 @@ class HomeownerPage(BasePage):
     URL = f"{BasePage.BASE_URL}homeowner"
     TITLE = "My Home | ComeHome"
 
-    def get_url_property(self, slug):
-        """Given the slug, get the URL when a property is loaded in the Homowner page"""
-        URL = f"{BasePage.BASE_URL}homeowner/{slug}"
-        return URL
-    
-    def get_title_property(self, address):
-        """Given the full address, get the Title when a property is loaded in the Homowner page"""
-        TITLE = f"{address} | My Home | ComeHome"
-        return TITLE
-
     # Locators
     def __init__(self, page: Page):
         super().__init__(page)
@@ -32,12 +22,22 @@ class HomeownerPage(BasePage):
 
         # AVM Section
         self.avmSection = self.page.locator(selectors['avmSection'])
-        self.avmmSectionAddress = self.avmSection.locator('[data-hc-name=avm-address]').locator('h1')
+        self.avmSectionAddress = self.avmSection.locator('[data-hc-name=avm-address]').locator('h1')
         self.avmSectionDetails = self.avmSection.locator('[data-hc-name=avm-property-details]')
 
         # Property Cards Section
         self.cardsSection = self.page.locator(selectors['cardsSection'])
 
     # Methods
+    def getUrlProperty(self, slug):
+        """Given the slug, get the URL when a property is loaded in the Homowner page"""
+        property_url = f"{self.URL}/{slug}"
+        return property_url
+    
+    def getTitleProperty(self, address):
+        """Given the full address, get the Title when a property is loaded in the Homowner page"""
+        property_title = f"{address} | {self.TITLE}"
+        return property_title
+    
     def goto(self):
         self.page.goto(self.URL)

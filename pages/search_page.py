@@ -105,11 +105,11 @@ class SearchPage(BasePage):
     def goto(self):
         self.page.goto(self.URL)
     
-    def search_for_property(self, property):
+    def searchForProperty(self, property):
         self.searchInput.fill(property)
         self.searchButton.click()
     
-    def get_filter_checkbox_settings(self, checkboxes: Locator, labels: Locator):
+    def getFilterCheckboxSettings(self, checkboxes: Locator, labels: Locator):
         res = {}
         for checkbox in range(checkboxes.count()):
             if checkboxes.nth(checkbox).is_checked():

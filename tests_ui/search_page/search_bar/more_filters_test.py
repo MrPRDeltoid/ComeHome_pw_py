@@ -44,7 +44,7 @@ def test_more_filters_menu(search_page: SearchPage, setup_search_page):
         if filter_name == "Listing Status":
             checkboxes = search_page.filterRowControl.nth(row).get_by_role('checkbox')
             labels = search_page.filterRowControl.nth(row).locator('label')
-            assert search_page.get_filter_checkbox_settings(checkboxes, labels) == {'For sale': True,
+            assert search_page.getFilterCheckboxSettings(checkboxes, labels) == {'For sale': True,
                                                                                     'Off Market': False,
                                                                                     'Pending': False,
                                                                                     'Under Contract': False,
@@ -68,7 +68,7 @@ def test_more_filters_menu(search_page: SearchPage, setup_search_page):
         if filter_name == "Property Type":
             checkboxes = search_page.filterRowControl.nth(row).get_by_role('checkbox')
             labels = search_page.filterRowControl.nth(row).locator('label')
-            assert search_page.get_filter_checkbox_settings(checkboxes, labels) == {'House': False,
+            assert search_page.getFilterCheckboxSettings(checkboxes, labels) == {'House': False,
                                                                                     'Townhouse': False,
                                                                                     'Condo': False,
                                                                                     'Co-op': False,

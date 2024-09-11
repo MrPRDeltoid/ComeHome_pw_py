@@ -4,8 +4,8 @@ from pages.property_page import PropertyPage
 
 def test_intro_section_text(property_page: PropertyPage, setup_property_page):
     """Check Intro Section has correct address and details"""
-    property_data = property_page.get_property_data('property1')
-    property_details = property_page.get_property_page_details(property_data)
+    property_data = property_page.getPropertyData('property1')
+    property_details = property_page.getPropertyPageDetails(property_data)
     setup_property_page(property_details['slug'])
 
     expect(property_page.propertyFullAddress).to_have_text(F"{property_data['street']}., {property_data['city']}, {property_data['state']} {property_data['zip']}")

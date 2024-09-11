@@ -75,17 +75,17 @@ class BasePage:
         self.emailField.fill(email)
         self.passwordField.fill(password)
     
-    def get_property_data(self, property):
+    def getPropertyData(self, property):
         with open(self.PROPERTY_DATA_FILE_PATH, mode="r", encoding="utf-8") as data_file:
             property_data = json.load(data_file)[property]
         return property_data
     
-    def construct_full_address(self, data):
+    def constructFullAddress(self, data):
         full_address = f"{data['street']} {data['city']} {data['state']} {data['zip']}"
         return full_address
     
-    def construct_slug(self, data):
-        full_address = self.construct_full_address(data)
+    def constructSlug(self, data):
+        full_address = self.constructFullAddress(data)
         slug = f"{full_address}".replace(' ', '-')
         return slug
 

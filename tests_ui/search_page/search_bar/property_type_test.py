@@ -10,7 +10,7 @@ def test_property_type_filter_menu(search_page: SearchPage, setup_search_page):
     checkboxes = search_page.propertyTypeMenu.get_by_role('checkbox')
     labels = search_page.propertyTypeCheckbox.locator('label')
     # Verify correct labels and default check state for each checkbox
-    assert search_page.get_filter_checkbox_settings(checkboxes, labels) == {'House': False,
+    assert search_page.getFilterCheckboxSettings(checkboxes, labels) == {'House': False,
                                                                             'Townhouse': False,
                                                                             'Condo': False,
                                                                             'Co-op': False,
