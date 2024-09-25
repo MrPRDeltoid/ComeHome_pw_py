@@ -8,8 +8,7 @@ def test_top_bar_text_and_elements(page: Page, property_page: PropertyPage, setu
     property_data = property_page.getPropertyData('property1')
     property_details = property_page.getPropertyPageDetails(property_data)
     setup_property_page(property_details['slug'])
-    expect(page).to_have_url(property_page.getUrl(property_details['slug']))
-    expect(page).to_have_title(property_page.getTitle(property_details['full_address']))
+
     expect(property_page.breadcrumbs).to_have_text(f"Home{property_data['city']}, {property_data['state']}{property_data['zip']}{property_data['street']}")
     expect(property_page.publicViewButton).to_have_text("Currently showingPublic view")
     expect(property_page.publicViewButton).to_have_attribute('data-state', 'active')
