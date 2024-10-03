@@ -28,7 +28,9 @@ class PropertyPage(BasePage):
         self.getPreApprovedButton = self.propertyOptionsPanel.get_by_label('Get pre-approved')
         self.contactAgentButton = self.propertyOptionsPanel.locator('[data-hc-name=contact-agent-button]')
         self.shareButton = self.propertyOptionsPanel.get_by_label('share')
+        self.shareButtonLabel = self.propertyOptionsPanel.locator('[data-hc-name=share-button] > label')
         self.saveButton = self.propertyOptionsPanel.get_by_label('Save this property to your Watchlist')
+        self.saveButtonLabel = self.propertyOptionsPanel.locator('[data-hc-name=save-button] > div[class$=__ButtonLabel]')
         self.mlsAttribution = self.propertyOptionsPanel.locator('.PDPRightRailCard__MLSAttribution')
         # Property Intro Section
         self.propertyIntroSection = page.locator(selectors['propertyIntroSection'])

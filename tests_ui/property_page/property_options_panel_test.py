@@ -29,3 +29,12 @@ def test_listing_status_section(property_page: PropertyPage, setup_property_page
     # Click to hide mortgage info
     property_page.listingStatusMortgageInfoButton.click()
     expect(property_page.mortgageInfo).to_be_hidden()
+    expect(property_page.getPreApprovedButton).to_have_text("Get pre-approved")
+    expect(property_page.getPreApprovedButton).to_be_enabled()
+    expect(property_page.contactAgentButton).to_have_text("Contact Agent")
+    expect(property_page.contactAgentButton).to_be_enabled()
+    expect(property_page.shareButton).to_be_enabled()
+    expect(property_page.shareButtonLabel).to_have_text("Share")
+    expect(property_page.saveButton).to_be_enabled()
+    expect(property_page.saveButtonLabel).to_have_text("Save")
+    expect(property_page.mlsAttribution).to_have_text("Courtesy of RE/MAX Gold Coast REALTORS")
