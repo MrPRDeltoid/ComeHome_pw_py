@@ -48,6 +48,7 @@
         "propertyIntroSection": "[data-hc-name=property-intro-section]",
         "propertyDetailsSection": ".AdditionalHomeDetails__AdditionalHomeDetails",
         "claimHomeSection": "[data-hc-name=upsell-section]",
-        "mapSection": ".MapPropertyPage__MapPropertyPage"
+        "mapSection": ".MapPropertyPage__MapPropertyPage",
+        "mapSectionInfoButton": ".mapboxgl-ctrl-attrib-button"
     }
 }

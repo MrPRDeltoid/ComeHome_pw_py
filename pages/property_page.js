@@ -16,6 +16,7 @@ exports.PropertyPage = class PropertyPage extends BasePage {
         this.claimHomeSection = page.locator(property_page.claimHomeSection);
         this.mapSection = page.locator(property_page.mapSection);
         this.mapSectionImage = page.locator(property_page.mapSection).getByRole('tabpanel');
+        this.mapSectionInfoButton = page.locator(property_page.mapSectionInfoButton);
     }
     
     // Methods

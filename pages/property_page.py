@@ -54,6 +54,7 @@ class PropertyPage(BasePage):
         self.tabListButton = self.tabList.get_by_role('tab')
         self.zoomInButton = self.mapSection.locator('[data-hc-name=zoom in]')
         self.zoomOutButton = self.mapSection.locator('[data-hc-name=zoom out]')
+        self.mapSectionInfoButton = self.mapSection.locator(selectors['mapSectionInfoButton'])
         # AVM Section
         self.avmSection = page.locator('[data-hc-name=avm-breakdown]')
 

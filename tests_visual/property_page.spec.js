@@ -32,6 +32,7 @@ test.describe('The Property Page', () => {
         await expect(property_page.claimHomeSection).toHaveScreenshot('property_page_claimHomeSection.png');
         await expect(property_page.mapSectionImage).toHaveAttribute('data-state', 'active');  // NOTE: Required to allow map to render
         if (browserName != 'firefox') {  // TODO: Investigate why firefox has issues with this image not loading succinctly
+            await expect(property_page.mapSectionInfoButton).toBeVisible();  // NOTE: Required to allow image to render
             await expect(property_page.mapSection).toHaveScreenshot('property_page_mapSection.png');
         }   
         await expect(property_page.footerSection).toHaveScreenshot('property_page_footerSection.png',
