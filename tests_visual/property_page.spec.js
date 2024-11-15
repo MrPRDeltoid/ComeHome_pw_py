@@ -20,8 +20,8 @@ test.describe('The Property Page', () => {
         await expect(property_page.mainMenu).toHaveScreenshot('property_page_mainMenu.png');
         await expect(property_page.topBar).toHaveScreenshot('property_page_topBar.png');
 
-        if (browserName != 'firefox') {
-            page.waitForLoadState("networkidle");  // TODO: Not sure why this is failing on Firefox
+        if (browserName == 'chrome') {
+            page.waitForLoadState("networkidle");  // TODO: Investigate why this is failing on firefox, webkit
         }
         await expect(property_page.photoSectionImage).toBeVisible();  // NOTE: Required to allow image to render
         await expect(property_page.photoSection).toHaveScreenshot('property_page_photoSection.png', 
