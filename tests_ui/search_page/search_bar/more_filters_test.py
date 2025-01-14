@@ -34,7 +34,7 @@ def test_more_filters_menu(search_page: SearchPage, setup_search_page):
     search_page.moreFiltersButton.click()
     expect(search_page.moreFiltersMenu).to_be_visible()
     expect(search_page.clearFiltersButton).to_have_text('Clear All Filters')
-    exp_filter_labels = ['Listing Status', 'Price', 'Property Type', 'Beds', 'Baths', 'ComeHome Value', 'Square Feet',
+    exp_filter_labels = ['Listing Status', 'Price', 'Property Type', 'Units', 'Beds', 'Baths', 'ComeHome Value', 'Square Feet',
                          'Price per Square Foot', 'Lot Size', 'Days on Market', 'Year Built', 'One-Year Forecast', 'Crime',
                          'Elementary', 'Middle', 'High']
     for row in range(search_page.filterRow.count()):
@@ -45,10 +45,11 @@ def test_more_filters_menu(search_page: SearchPage, setup_search_page):
             checkboxes = search_page.filterRowControl.nth(row).get_by_role('checkbox')
             labels = search_page.filterRowControl.nth(row).locator('label')
             assert search_page.getFilterCheckboxSettings(checkboxes, labels) == {'For sale': True,
-                                                                                    'Off Market': False,
-                                                                                    'Pending': False,
-                                                                                    'Under Contract': False,
-                                                                                    'All': False}
+                                                                                 'Off Market': False,
+                                                                                 'Pending': False,
+                                                                                 'Under Contract': False,
+                                                                                 'Coming Soon': False,
+                                                                                 'All': False}
         if filter_name in ["Price", "ComeHome Value", "Square Feet", "Price per Square Foot", "Lot Size", "Year Built"]:
             if filter_name in ["Price", "ComeHome Value"]:
                 exp_options = list(search_page.PRICE_FILTER_OPTIONS)
@@ -69,10 +70,11 @@ def test_more_filters_menu(search_page: SearchPage, setup_search_page):
             checkboxes = search_page.filterRowControl.nth(row).get_by_role('checkbox')
             labels = search_page.filterRowControl.nth(row).locator('label')
             assert search_page.getFilterCheckboxSettings(checkboxes, labels) == {'House': False,
-                                                                                    'Townhouse': False,
-                                                                                    'Condo': False,
-                                                                                    'Co-op': False,
-                                                                                    'All': True}
+                                                                                 'Townhouse': False,
+                                                                                 'Condo': False,
+                                                                                 'Co-op': False,
+                                                                                 'Multifamily': False,
+                                                                                 'All': True}
         if filter_name in ['Beds', 'Baths']:
             expect(search_page.filterRow.nth(row).get_by_role('button').first).to_have_text('-')
             expect(search_page.filterRow.nth(row).get_by_role('button').first).to_be_disabled()

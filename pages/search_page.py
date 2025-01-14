@@ -19,9 +19,10 @@ class SearchPage(BasePage):
     LOT_SIZE_FILTER_OPTIONS = ['2000 sq. ft.', '3000 sq. ft.', '4000 sq. ft.', '5000 sq. ft.', '6000 sq. ft.', '7000 sq. ft.',
                                '8000 sq. ft.', '0.25 acres', '0.50 acres', '1.00 acre', '2.00 acres', '3.00 acres', '4.00 acres',
                                '5.00 acres', '10.00 acres', '20.00 acres', '30.00 acres']
-    YEAR_BUILT_FILTER_OPTIONS = ['2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013',
+    YEAR_BUILT_FILTER_OPTIONS = ['2025', '2024', '2023', '2022', '2021', '2020', '2019', '2018', '2017', '2016', '2015', '2014', '2013',
                                  '2012', '2011', '2010', '2009', '2008', '2007', '2006', '2005', '2004', '2003', '2002', '2001',
                                  '2000', '1995', '1990', '1980', '1970', '1960', '1950', '1940', '1930', '1920', '1910', '1900']
+                                # TODO: Change to a method that calculates the years, so don't need to update every new year
     DAYS_ON_MARKET_FILTER_OPTIONS = ['Any', '< 1 Day', '< 3 Days', '< 7 Days', '< 14 Days', '< 30 Days', '< 90 Days']
 
 
@@ -88,8 +89,6 @@ class SearchPage(BasePage):
         self.sortButton = self.propertySection.locator('[data-hc-name=sort-link]')
         self.sortMenu = self.propertySection.locator('#sortOptionsMenu')
         self.propertyCount = self.propertySection.locator('[data-hc-name=property-count]')
-        self.lenderCard = self.propertySection.locator(selectors['lenderCard'])
-        self.lenderCardButton = self.propertySection.locator('[data-hc-name=click_lender_cta]')
         self.propertyCard = self.propertySection.locator('.PropertyCard__PropertyCard')
         self.propertyCardCarousel = self.propertyCard.locator('[data-hc-name=thumbnail-carousel]')
         self.propertyCardAddress = self.propertyCard.locator('[data-hc-name=property-address]')

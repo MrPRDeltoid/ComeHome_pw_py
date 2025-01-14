@@ -22,8 +22,7 @@ def test_property_details_section_test(property_page: PropertyPage, setup_proper
                             'HOA Name': '--',
                             'HOA Fee': '--',
                             'HOA Includes': '--',
-                            #'Tax Year': str(date.today().year - 1),  # Last year should be latest tax year
-                            'Tax Year': str(date.today().year),  # TODO: BUG - taxes should only be known for the last tax year?
+                            'Tax Year': str(date.today().year - 1),  # Last year should be latest tax year
                             'Tax Amount': '',
                             'Property in Flood Zone': '--'}
     property_details = property_page.getPropertyDetailsData()

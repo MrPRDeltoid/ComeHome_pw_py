@@ -14,4 +14,5 @@ def test_property_type_filter_menu(search_page: SearchPage, setup_search_page):
                                                                             'Townhouse': False,
                                                                             'Condo': False,
                                                                             'Co-op': False,
+                                                                            'Multifamily': False,
                                                                             'All': True}
